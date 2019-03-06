@@ -1,21 +1,75 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="aw-layout-loading  js-loading-overlay">
+  <div class="aw-layout-loading__container">
+    <span class="aw-balls-spinner">Carregando...</span>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div class="aw-layout-page">
+
+  <nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand  hidden-xs" href="#">
+          <span>
+        <strong style="font-size: 22px;">TecSeg - Controle de ASO's</strong>
+      </span>
+
+        </a>
+
+        <ul class="nav  navbar-nav">
+          <li>
+            <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <ul class="nav navbar-nav  navbar-right">
+
+
+
+
+
+        <li>
+          <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <aside class="aw-layout-sidebar  js-sidebar">
+    <div class="aw-layout-sidebar__content">
+
+    <nav class="aw-menu  js-menu">
+      <ul class="aw-menu__list">
+
+        <li class="aw-menu__item">
+          <a routerLink=""><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="aw-menu__item  is-active">
+          <a routerLink="/consfuncionario">
+            <i class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span>
+            <i class="aw-menu__navigation-icon  fa"></i>
+          </a>
+
+          <ul class="aw-menu__list  aw-menu__list--sublist">
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfuncionario">Funcionário</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fornecedores</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fase de Obras</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Plano Contas</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Produtos</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Obras</a></li>
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </nav>
+
+    </div>
+  </aside>
+<section class="aw-layout-content  js-content">
 <router-outlet></router-outlet>

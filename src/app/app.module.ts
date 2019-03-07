@@ -10,6 +10,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShareModule } from './share/share.module';
 
 import {NgxMaskModule} from 'ngx-mask';
+import { AsosModule } from './asos/asos.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {NgxMaskModule} from 'ngx-mask';
     ShareModule,
     FuncionarioModule,
     NgxMaskModule.forRoot(),
+    AsosModule,
     AppRoutingModule,
   ],
   providers: [

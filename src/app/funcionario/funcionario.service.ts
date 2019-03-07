@@ -23,7 +23,19 @@ export class FuncionarioService {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/id/' +  id);
   }
 
+  getFuncionarioFuncao(id: number, nome: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/funcao/' +  id + "/" + nome);
+  }
+
+  getFuncionarioLoja(id: number, nome: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + "/" + nome);
+  }
+
   getFuncionarioNome(nome: string): Observable<Funcionario> {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' +  nome);
+  }
+
+  getFuncionarioFuncaoLoja(idloja: number, idfuncao: number, nome: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + idloja + "/" + idfuncao + "/" + nome);
   }
 }

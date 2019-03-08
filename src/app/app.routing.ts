@@ -1,3 +1,4 @@
+import { CadasocontroleComponent } from './asos/cadasocontrole/cadasocontrole.component';
 import { CadfuncionarioComponent } from './funcionario/cadfuncionario/cadfuncionario.component';
 import { ConsfuncionarioComponent } from './funcionario/consfuncionario/consfuncionario.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,8 @@ const APP_ROUTER: Routes = [
   { path: 'cadfuncionario/:id', component: CadfuncionarioComponent },
   { path: 'cadfuncionario', component: CadfuncionarioComponent },
   { path: 'consasocontrole', component: ConsasocontroleComponent },
+  { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
+  { path: 'cadasocontrole', component: CadasocontroleComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

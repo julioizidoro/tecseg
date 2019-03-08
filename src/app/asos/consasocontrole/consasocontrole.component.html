@@ -33,13 +33,20 @@
                 <input type="date" class="form-control" id="datavencimetoinicial" placeholder="Data Inicial"
                 formControlName="datavencimentoinicial" >
               </div>
-        
+
               <div class="form-group col-xs-2">
                 <label for="datavencimetofinal">Vencimento Final</label>
                 <input type="date" class="form-control" id="datavencimetofinal" placeholder="Data Final"
                 formControlName="datavencimentofinal" >
               </div>
-              
+
+              <div class="form-group col-xs-2" >
+                <label for="tipo">Tipo</label>
+                <select class="form-control" formControlName="tipo"  [compareWith]="compararTipo" (change)="setTipo()">
+                    <option *ngFor="let tipo of tipos" [ngValue]="tipo"> {{ tipo.nome }}</option>
+                 </select>
+              </div>
+
                 <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
                   <i class="fa fa-search" aria-hidden="true"></i>
                   Pesquisar</button>
@@ -53,7 +60,7 @@
 
     <div class="container-fluid" style="width:80%;">
 
-        <button type="button" style="float:right;" class="btn btn-success">
+        <button type="button" style="float:right;" class="btn btn-success" routerLink="/cadasocontrole">
           <i class="fa fa-plus" aria-hidden="true"></i>
           Novo</button>
         <br/><br/>
@@ -65,13 +72,13 @@
                     <th>Loja</th>
                     <th>Tipo</th>
                     <th>Data Exame</th>
-                    <th>Data Vencimento</th> 
+                    <th>Data Vencimento</th>
                   </tr>
             </thead>
             <tbody>
-      
-                  <tr *ngFor="let aso of asoControles">
-      
+
+            <tr *ngFor="let aso of asoControles" >
+
                     <td>{{ aso.funcionario.nome}}</td>
                     <td>{{ aso.funcionario.funcao.nome}}</td>
                     <td>{{ aso.funcionario.loja.nome }}</td>
@@ -81,8 +88,8 @@
                   </tr>
                 </tbody>
               </table>
-      
-      
+
+
         </div>
   </div>
 

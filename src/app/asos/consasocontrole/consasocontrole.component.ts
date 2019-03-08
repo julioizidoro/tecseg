@@ -1,3 +1,4 @@
+import { AsotipoService } from './../asotipo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Loja } from 'src/app/loja/model/loja';
@@ -6,6 +7,7 @@ import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { LojaService } from 'src/app/loja/loja.service';
 import { AsocontroleService } from '../asocontrole.service';
 import { Asocontrole } from '../model/asocontrole';
+import { Asotipo } from '../model/asotipo';
 
 @Component({
   selector: 'app-consasocontrole',
@@ -19,14 +21,18 @@ export class ConsasocontroleComponent implements OnInit {
   lojaSelecionada: Loja;
   funcoes: Funcao[];
   funcaoSelecionada: Funcao;
-  asoControles : Asocontrole[];
+  asoControles: Asocontrole[];
+  tipos: Asotipo[];
+  tipoSelecionado: Asotipo;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private lojaService: LojaService,
     private funcaoService: FuncaoService,
     private asocontroleService: AsocontroleService,
-  ) { 
+    private asotipoService: AsotipoService,
+  ) {
     this.consultar();
   }
 
@@ -38,24 +44,28 @@ export class ConsasocontroleComponent implements OnInit {
       datavencimentoinicial: Date,
       datavencimentofinal: Date,
       funcao: [],
+      tipo: [],
     });
   }
 
-  carregarComboBox(){
+  carregarComboBox() {
     this.funcaoService.listar().subscribe(resposta => {
       this.funcoes = resposta as any;
     });
     this.lojaService.listar().subscribe(resposta => {
       this.lojas = resposta as any;
     });
+    this.asotipoService.listar().subscribe(resposta => {
+      this.tipos = resposta as any;
+    });
   }
-    
+
   compararLoja(obj1, obj2) {
     return obj1 && obj2 ? obj1.idloja === obj2.idloja : obj1 === obj2;
   }
 
   setLoja() {
-    this.lojaSelecionada = this.formulario.get("loja").value;
+    this.lojaSelecionada = this.formulario.get('loja').value;
   }
 
   compararFuncao(obj1, obj2) {
@@ -63,7 +73,15 @@ export class ConsasocontroleComponent implements OnInit {
   }
 
   setFuncao() {
-    this.funcaoSelecionada = this.formulario.get("funcao").value;
+    this.funcaoSelecionada = this.formulario.get('funcao').value;
+  }
+
+  compararTipo(obj1, obj2) {
+    return obj1 && obj2 ? obj1.idloja === obj2.idloja : obj1 === obj2;
+  }
+
+  setTipo() {
+    this.tipoSelecionado = this.formulario.get('tipo').value;
   }
 
   consultar() {
@@ -72,6 +90,18 @@ export class ConsasocontroleComponent implements OnInit {
         this.asoControles = resposta as any;
       }
     );
+}
+
+pesquisar() {
+
+}
+
+pesquisarLimpar() {
+  this.formulario.reset();
+  this.funcaoSelecionada = null;
+  this.lojaSelecionada = null;
+  this.tipoSelecionado = null;
+  this.consultar();
 }
 
 }

@@ -1,3 +1,4 @@
+import { Asotipo } from './../../asos/model/asotipo';
 import { FuncionarioService } from './../funcionario.service';
 import { Funcionario } from './../model/funcionario';
 import { Component, OnInit } from '@angular/core';
@@ -5,7 +6,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Loja } from 'src/app/loja/model/loja';
 import { LojaService } from 'src/app/loja/loja.service';
-import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
 import { stringify } from 'querystring';
 import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { Funcao } from 'src/app/funcao/model/funcao';
@@ -44,12 +44,12 @@ export class ConsfuncionarioComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nome: [null],
       loja: [null],
-      funcao: [],
+      funcao: [null],
     });
 
   }
 
-  carregarComboBox(){
+  carregarComboBox() {
     this.funcaoService.listar().subscribe(resposta => {
       this.funcoes = resposta as any;
     });
@@ -71,33 +71,33 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   pesquisar() {
-    var nomePesquisa = this.formulario.get('nome').value;
+    let nomePesquisa = this.formulario.get('nome').value;
     if (nomePesquisa == null ) {
-      nomePesquisa ='';
+      nomePesquisa = '';
     }
-    if (( nomePesquisa.length>0 ) && ( this.funcaoSelecionada==null ) && (this.lojaSelecionada == null)) {
+    if (( nomePesquisa.length > 0 ) && ( this.funcaoSelecionada == null ) && (this.lojaSelecionada == null)) {
       this.pesquisarNome();
     } else {
-        if ( nomePesquisa.length<=0 ) {
-          nomePesquisa = "@";
+        if ( nomePesquisa.length <= 0 ) {
+          nomePesquisa = '@';
         }
-        if (( this.lojaSelecionada!=null) && (this.lojaSelecionada !=null)){
+        if (( this.lojaSelecionada != null) && (this.lojaSelecionada != null) ) {
           this.pesquisarFuncionarioFuncaoLoja(nomePesquisa);
         } else {
-          if ( this.funcaoSelecionada !=null ){
-            this.pesquisarFuncao(nomePesquisa)
+          if ( this.funcaoSelecionada != null ) {
+            this.pesquisarFuncao( nomePesquisa );
           } else {
-            if ( this.lojaSelecionada !=null ){
+            if ( this.lojaSelecionada != null ) {
               this.pesquisarLoja(nomePesquisa);
             }
           }
         }
     }
-    console.log('teste')
+    console.log('teste');
   }
 
   pesquisarNome() {
-    let nomePesquisa = this.formulario.get('nome').value;
+    const nomePesquisa = this.formulario.get('nome').value;
     this.funcionarioService.getFuncionarioNome(nomePesquisa).subscribe(
       resposta => {
         this.funcionario = resposta as any;
@@ -105,7 +105,7 @@ export class ConsfuncionarioComponent implements OnInit {
     );
   }
 
-  pesquisarLoja(nomePesquisa: string){
+  pesquisarLoja(nomePesquisa: string) {
     this.funcionarioService.getFuncionarioLoja(this.lojaSelecionada.idloja, nomePesquisa).subscribe(
       resposta => {
         this.funcionario = resposta as any;
@@ -113,7 +113,7 @@ export class ConsfuncionarioComponent implements OnInit {
     );
   }
 
-  pesquisarFuncao(nomePesquisa: string){
+  pesquisarFuncao(nomePesquisa: string) {
     this.funcionarioService.getFuncionarioFuncao(this.funcaoSelecionada.idfuncao, nomePesquisa).subscribe(
       resposta => {
         this.funcionario = resposta as any;
@@ -121,7 +121,7 @@ export class ConsfuncionarioComponent implements OnInit {
     );
   }
 
-  pesquisarFuncionarioFuncaoLoja(nomePesquisa: string){
+  pesquisarFuncionarioFuncaoLoja(nomePesquisa: string) {
     this.funcionarioService.getFuncionarioFuncaoLoja(this.lojaSelecionada.idloja, this.funcaoSelecionada.idfuncao, nomePesquisa ).subscribe(
       resposta => {
         this.funcionario = resposta as any;
@@ -134,7 +134,7 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   setLoja() {
-    this.lojaSelecionada = this.formulario.get("loja").value;
+    this.lojaSelecionada = this.formulario.get('loja').value;
   }
 
   compararFuncao(obj1, obj2) {
@@ -142,13 +142,13 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   setFuncao() {
-    this.funcaoSelecionada = this.formulario.get("funcao").value;
+    this.funcaoSelecionada = this.formulario.get('funcao').value;
   }
 
   pesquisarLimpar() {
     this.formulario.reset();
-    this.funcaoSelecionada= null;
-    this.lojaSelecionada= null;
+    this.funcaoSelecionada = null;
+    this.lojaSelecionada = null;
     this.consultar();
   }
 }

@@ -1,3 +1,5 @@
+import { CadasocontroleComponent } from './cadasocontrole/cadasocontrole.component';
+import { AsotipoService } from './asotipo.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsasocontroleComponent } from './consasocontrole/consasocontrole.component';
@@ -7,23 +9,29 @@ import { routing } from '../app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { FuncaoService } from '../funcao/funcao.service';
 import { AsocontroleService } from './asocontrole.service';
+import { FuncionarioModule } from '../funcionario/funcionario.module';
 
 
 @NgModule({
-  declarations: [ConsasocontroleComponent],
+  declarations: [
+    ConsasocontroleComponent, CadasocontroleComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FuncaoModule,
     routing,
     HttpClientModule,
+    FuncionarioModule,
   ],
   exports: [
     ConsasocontroleComponent,
+    CadasocontroleComponent,
   ],
   providers: [
     FuncaoService,
     AsocontroleService,
+    AsotipoService,
   ]
 })
 export class AsosModule { }

@@ -1,18 +1,18 @@
-import { Funcionario } from "./../model/funcionario";
-import { FuncionarioService } from "./../funcionario.service";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Funcionario } from '../model/funcionario';
+import { Funcao } from 'src/app/funcao/model/funcao';
+import { Loja } from 'src/app/loja/model/loja';
+import { FuncaoService } from 'src/app/funcao/funcao.service';
+import { LojaService } from 'src/app/loja/loja.service';
+import { FuncionarioService } from '../funcionario.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { Funcao } from "src/app/funcao/model/funcao";
-import { FuncaoService } from "src/app/funcao/funcao.service";
-import { LojaService } from "src/app/loja/loja.service";
-import { Loja } from "src/app/loja/model/loja";
 
 @Component({
-  selector: "app-cadfuncionario",
-  templateUrl: "./cadfuncionario.component.html",
-  styleUrls: ["./cadfuncionario.component.less"]
+  selector: 'app-cadfuncionario',
+  templateUrl: './cadfuncionario.component.html',
+  styleUrls: ['./cadfuncionario.component.less']
 })
 export class CadfuncionarioComponent implements OnInit {
   formulario: FormGroup;
@@ -74,7 +74,7 @@ export class CadfuncionarioComponent implements OnInit {
             }
           },
           err => {
-            console.log(err.error.erros.join(" "));
+            console.log(err.error.erros.join(' '));
           }
         );
       }
@@ -91,11 +91,11 @@ export class CadfuncionarioComponent implements OnInit {
   }
 
   setFuncao() {
-    this.funcaoSelecionada = this.formulario.get("funcao").value;
+    this.funcaoSelecionada = this.formulario.get('funcao').value;
   }
 
   setLoja() {
-    this.lojaSelecionada = this.formulario.get("loja").value;
+    this.lojaSelecionada = this.formulario.get('loja').value;
   }
 
   compararFuncao(obj1, obj2) {
@@ -113,11 +113,11 @@ export class CadfuncionarioComponent implements OnInit {
       this.funcionario = resposta as any;
       console.log(this.funcionario);
     });
-    this.router.navigate(["/consfuncionario"]);
+    this.router.navigate(['/consfuncionario']);
   }
 
   cancelar() {
     this.formulario.reset();
-    this.router.navigate(["/consfuncionario"]);
+    this.router.navigate(['/consfuncionario']);
   }
 }

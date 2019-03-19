@@ -9,6 +9,7 @@ import { AsocontroleService } from '../asocontrole.service';
 import { Asocontrole } from '../model/asocontrole';
 import { Asotipo } from '../model/asotipo';
 import { now } from 'moment';
+import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
 
 @Component({
   selector: 'app-consasocontrole',
@@ -25,10 +26,6 @@ export class ConsasocontroleComponent implements OnInit {
   asoControles: Asocontrole[];
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
-  bt0: boolean;
-  bt30: boolean;
-  bt45: boolean;
-  bt10: boolean;
 
 
   constructor(
@@ -98,7 +95,189 @@ export class ConsasocontroleComponent implements OnInit {
 }
 
 pesquisar() {
+  let dataI  = this.formulario.get('datavencimentoinicial').value;
+  let dataF = this.formulario.get('datavencimentofinal').value;
+  let nome = this.formulario.get('nome').value;
+  if ((dataI != null) && (dataF != null) && (this.lojaSelecionada != null)
+  && (this.funcaoSelecionada != null) && (this.tipoSelecionado != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getAllAsos(dataI, dataF, nome);
+  }  else if ((dataI != null) && (dataF != null) &&  (this.funcaoSelecionada != null) ) {
+    if (( nome ==null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getDataVencimentoFuncao(dataI, dataF, nome);
+  } else if ((dataI != null) && (dataF != null) &&  (this.lojaSelecionada != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getDataVencimentoLoja(dataI, dataF, nome);
+  }  else if ((dataI != null) && (dataF != null) &&  (this.tipoSelecionado != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getDataVencimentoTipo(dataI, dataF, nome);
+  } else if ((dataI != null) && (dataF != null)) {
+    if (( nome ==null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getDataVencimento(dataI, dataF, nome);
+  } else if ((this.funcaoSelecionada !=null ) && (this.lojaSelecionada != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getFuncaoLoja(nome);
+  } else if ((this.lojaSelecionada !=null ) && (this.tipoSelecionado != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getLojaTipo(nome);
+  } else if ((this.funcaoSelecionada !=null ) && (this.tipoSelecionado != null) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getFuncaoTipo(nome);
+  } else if ((this.lojaSelecionada !=null ) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getLoja(nome);
+  } else if ((this.funcaoSelecionada !=null ) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getFuncao(nome);
+  } else if ((this.tipoSelecionado!=null ) ) {
+    if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+    }
+    this.getTipo(nome);
+  } else if (( nome == null) || (nome.length <= 0)) {
+      nome = '@';
+  }
+  this.getNome(nome);
+}
 
+getNome(nome: string) {
+  this.asocontroleService.getNome(nome).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getTipo(nome: string) {
+  this.asocontroleService.getTipo(nome, this.tipoSelecionado.idasotipo ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getFuncao(nome: string) {
+  this.asocontroleService.getFuncao(nome, this.lojaSelecionada.idloja ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getLoja(nome: string) {
+  this.asocontroleService.getLoja(nome, this.lojaSelecionada.idloja ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getLojaTipo(nome: string) {
+  this.asocontroleService.getLojaTipo(nome, this.lojaSelecionada.idloja, this.tipoSelecionado.idasotipo ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getFuncaoTipo(nome: string) {
+  this.asocontroleService.getFuncaoTipo(nome, this.funcaoSelecionada.idfuncao, this.tipoSelecionado.idasotipo ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getFuncaoLoja(nome: string) {
+  this.asocontroleService.getFuncaoLoja(nome, this.funcaoSelecionada.idfuncao, this.lojaSelecionada.idloja ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getDataVencimentoFuncao(dataI: Date, dataF: Date, nome: string) {
+  this.asocontroleService.getDataVencimentoFuncao(
+    dataI, dataF, nome, this.funcaoSelecionada.idfuncao ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getDataVencimentoLoja(dataI: Date, dataF: Date, nome: string) {
+  this.asocontroleService.getDataVencimentoFuncao(
+    dataI, dataF, nome, this.lojaSelecionada.idloja ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getDataVencimentoTipo(dataI: Date, dataF: Date, nome: string) {
+  this.asocontroleService.getDataVencimentoTipo(
+    dataI, dataF, nome, this.tipoSelecionado.idasotipo ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getDataVencimento( dataI: Date, dataF: Date, nome: string) {
+  this.asocontroleService.getDataVencimento(
+    dataI, dataF, nome ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+getAllAsos( dataI: Date, dataF: Date, nome: string) {
+  this.asocontroleService.getAsoControle(
+    dataI, dataF, nome, this.lojaSelecionada.idloja, this.funcaoSelecionada.idfuncao, this.tipoSelecionado.idasotipo ).subscribe(
+    resposta => {
+      this.asoControles = resposta as any;
+    }
+  );
+  this.finalizarPesquisa();
+}
+
+finalizarPesquisa() {
+  this.formulario.reset();
+  this.funcaoSelecionada = null;
+  this.lojaSelecionada = null;
+  this.tipoSelecionado = null;
 }
 
 pesquisarLimpar() {

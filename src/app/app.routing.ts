@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { AppComponent } from './app.component';
 import { ConsasocontroleComponent } from './asos/consasocontrole/consasocontrole.component';
+import { LoginComponent } from './usuario/login/login/login.component';
 
 
 const APP_ROUTER: Routes = [
@@ -15,6 +16,7 @@ const APP_ROUTER: Routes = [
   { path: 'consasocontrole', component: ConsasocontroleComponent },
   { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

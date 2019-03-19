@@ -8,6 +8,7 @@ import { LojaService } from 'src/app/loja/loja.service';
 import { AsocontroleService } from '../asocontrole.service';
 import { Asocontrole } from '../model/asocontrole';
 import { Asotipo } from '../model/asotipo';
+import { now } from 'moment';
 
 @Component({
   selector: 'app-consasocontrole',
@@ -24,6 +25,10 @@ export class ConsasocontroleComponent implements OnInit {
   asoControles: Asocontrole[];
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
+  bt0: boolean;
+  bt30: boolean;
+  bt45: boolean;
+  bt10: boolean;
 
 
   constructor(

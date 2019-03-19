@@ -9,10 +9,9 @@ export class Asocontrole {
     dataexame: Date;
     datavencimento: Date;
     finalizado: boolean;
-    observaao: string;
+    observacao: string;
     exame: Exame;
     asotipo: Asotipo;
-    usuario: Usuario;
     funcionario: Funcionario;
-
+    situacao: string;
 }

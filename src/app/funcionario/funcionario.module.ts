@@ -19,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     FuncaoModule,
     routing,
     HttpClientModule,
-    ReactiveFormsModule,
   ],
   exports: [
     ConsfuncionarioComponent,

@@ -12,4 +12,63 @@ export class AsocontroleService {
   listar(): Observable<Asocontrole> {
     return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole');
   }
+
+  salvar(asoControle: Asocontrole): Observable<any> {
+    return this.httpClient.post<any>(env.baseApiUrl + 'asocontrole/salvar', asoControle);
+  }
+
+  calcularVencimento(dataVencimento: Date, dias: number): Observable<any> {
+    return this.httpClient.get<any>(env.baseApiUrl + 'asocontrole/calculardata/' + dataVencimento + "/" + dias);
+  }
+
+  //Pesquisar
+
+  getDataVencimento(dataI : Date, dataF: Date, nome: string): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/datavencimento/' +  dataI + "/" + dataF + "/"+ nome);
+  }
+
+  getDataVencimentoFuncao(dataI : Date, dataF: Date, nome: string, idfuncao: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/datavencimento/' +  dataI + "/" + dataF + "/"+ nome + "/" + idfuncao);
+  }
+
+  getDataVencimentoLoja(dataI : Date, dataF: Date, nome: string, idloja: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/datavencimento/' +  dataI + "/" + dataF + "/"+ nome + "/" + idloja);
+  }
+
+  getDataVencimentoTipo(dataI : Date, dataF: Date, nome: string, idtipo: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/datavencimento/' +  dataI + "/" + dataF + "/"+ nome + "/" + idtipo);
+  }
+
+  getFuncaoTipo(nome: string, idfuncao: number, idtipo: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/funcaotipo/' +  idfuncao + "/" + idtipo + "/"+ nome);
+  }
+
+  getFuncaoLoja(nome: string, idfuncao: number, idloja: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/funcaoloja/' +  idfuncao + "/" + idloja + "/"+ nome);
+  }
+
+  getLojaTipo(nome: string, idtipo: number, idloja: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/lojatipo/' +  idloja + "/" + idtipo + "/"+ nome);
+  }
+
+  getLoja(nome: string, idloja: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/loja/'  + idloja + "/"+ nome);
+  }
+
+  getFuncao(nome: string, idfuncao: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/funcao/'  + idfuncao + "/"+ nome);
+  }
+
+  getTipo(nome: string, idtipo: number): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/tipo/'  + idtipo + "/"+ nome);
+  }
+
+  getNome(nome: string): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/loja/' + nome);
+  }
+
+  getAsoControle(dataI : Date, dataF: Date, nome: string, idloja: number, idfuncao: number, idtipo: number ): Observable<Asocontrole> {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/datavencimento/' +  dataI + "/" + dataF + "/"+ nome + "/" + idloja + "/" + idfuncao + "/" + idtipo );
+  }
+
 }

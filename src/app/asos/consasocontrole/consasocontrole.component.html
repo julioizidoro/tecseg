@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Controle de |Aso's
+      Controle de Aso's
       <br />
     </h3>
     <form [formGroup]="formulario">
@@ -46,7 +46,9 @@
                     <option *ngFor="let tipo of tipos" [ngValue]="tipo"> {{ tipo.nome }}</option>
                  </select>
               </div>
-
+              <div class="form-group col-xs-2" >
+                <br/>
+                <br/>
                 <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
                   <i class="fa fa-search" aria-hidden="true"></i>
                   Pesquisar</button>
@@ -54,6 +56,7 @@
                       <i class="fa fa-ban" aria-hidden="true" ></i>
                       Limpar</button>
           </div>
+        </div>
 
 
     </form>
@@ -67,6 +70,7 @@
          <table class="table table-striped" >
             <thead>
                 <tr>
+                    <th></th>
                     <th>Nome</th>
                     <th>Função</th>
                     <th>Loja</th>
@@ -78,13 +82,15 @@
             <tbody>
 
             <tr *ngFor="let aso of asoControles" >
-
+              <td >
+             <img src="#" width='40%'>
+              </td>
                     <td>{{ aso.funcionario.nome}}</td>
                     <td>{{ aso.funcionario.funcao.nome}}</td>
                     <td>{{ aso.funcionario.loja.nome }}</td>
                     <td>{{ aso.asotipo.nome }}</td>
-                    <td>{{ aso.dataexame }}</td>
-                    <td>{{ aso.datavencimento }}</td>
+                    <td>{{ aso.dataexame | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ aso.datavencimento | date: 'dd/MM/yyyy' }}</td>
                   </tr>
                 </tbody>
               </table>

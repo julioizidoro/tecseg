@@ -6,7 +6,7 @@ export class Funcionario {
   idfuncionario: number;
   nome: string;
   dataadmissao: Date;
-  situacao: boolean;
+  situacao: string;
   funcao: Funcao;
   loja: Loja;
 

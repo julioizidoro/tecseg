@@ -6,13 +6,13 @@
 
 <div class="aw-layout-page">
 
-  <nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+  <nav *ngIf= "mostrarMenu" class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
     <div class="container-fluid">
 
       <div class="navbar-header">
         <a class="navbar-brand  hidden-xs" href="#">
           <span>
-        <strong style="font-size: 22px;">TecSeg - Controle de ASO's</strong>
+        <strong style="font-size: 22px;">TecSeg - Controle de Aso's</strong>
       </span>
 
         </a>
@@ -38,7 +38,7 @@
     </div>
   </nav>
 
-  <aside class="aw-layout-sidebar  js-sidebar">
+  <aside  *ngIf= "mostrarMenu" class="aw-layout-sidebar  js-sidebar">
     <div class="aw-layout-sidebar__content">
 
     <nav class="aw-menu  js-menu">
@@ -49,37 +49,43 @@
         </li>
 
         <li class="aw-menu__item  is-active">
-          <a routerLink="/consfuncionario">
+          <a href="#">
             <i class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span>
             <i class="aw-menu__navigation-icon  fa"></i>
           </a>
 
           <ul class="aw-menu__list  aw-menu__list--sublist">
             <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfuncionario">Funcionário</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fornecedores</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fase de Obras</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Plano Contas</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Produtos</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Obras</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Loja</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Função</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Topo de Exame</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Usuário</a></li>
           </ul>
         </li>
 
         <li class="aw-menu__item  is-active">
-          <a routerLink="/consasocontrole">
-            <i class="fa  fa-fw  fa-file-text"></i><span>Asos</span>
-            <i class="aw-menu__navigation-icon  fa"></i>
-          </a>
+            <a href="#">
+              <i class="fa  fa-fw  fa-bank"></i><span>Aso's</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
 
-          <ul class="aw-menu__list  aw-menu__list--sublist">
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfuncionario">Funcionário</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fornecedores</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Fase de Obras</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Plano Contas</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Produtos</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Obras</a></li>
-          </ul>
-        </li>
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consasocontrole">Controle</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Relatório</a></li>
+            </ul>
+          </li>
 
+          <li class="aw-menu__item  is-active">
+            <a href="#">
+              <i class="fa  fa-fw  fa-bank"></i><span>Treinamento</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
+
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Lista</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Relatório</a></li>
+            </ul>
+          </li>
 
 
       </ul>

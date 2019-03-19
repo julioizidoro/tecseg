@@ -1,3 +1,4 @@
+import { UsuarioModule } from './usuario/usuario.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { AsosModule } from './asos/asos.module';
     FuncionarioModule,
     NgxMaskModule.forRoot(),
     AsosModule,
+    UsuarioModule,
     AppRoutingModule,
   ],
   providers: [

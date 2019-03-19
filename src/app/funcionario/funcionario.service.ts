@@ -23,19 +23,19 @@ export class FuncionarioService {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/id/' +  id);
   }
 
-  getFuncionarioFuncao(id: number, nome: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/funcao/' +  id + "/" + nome);
+  getFuncionarioFuncao(id: number, nome: string, situacao: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/funcao/' +  id + "/" + nome + "/"+ situacao);
   }
 
-  getFuncionarioLoja(id: number, nome: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + "/" + nome);
+  getFuncionarioLoja(id: number, nome: string, situacao: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + "/" + nome + "/"+ situacao);
   }
 
   getFuncionarioNome(nome: string): Observable<Funcionario> {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' +  nome);
   }
 
-  getFuncionarioFuncaoLoja(idloja: number, idfuncao: number, nome: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + idloja + "/" + idfuncao + "/" + nome);
+  getFuncionarioFuncaoLoja(idloja: number, idfuncao: number, nome: string, situacao: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + idloja + "/" + idfuncao + "/" + nome + "/"+ situacao);
   }
 }

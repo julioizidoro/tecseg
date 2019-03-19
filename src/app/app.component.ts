@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'TecSeg';
+  mostrarMenu: boolean = true;
+  mosrtrarLogin: boolean = true;
 
 
 
+  constructor( private router: Router ) {
 
-  constructor( ) {
 
   }
 
    ngOnInit(){
+
    }
 
 }

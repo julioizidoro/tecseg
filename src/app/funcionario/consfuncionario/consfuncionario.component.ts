@@ -22,6 +22,7 @@ export class ConsfuncionarioComponent implements OnInit {
   lojaSelecionada: Loja;
   funcoes: Funcao[];
   funcaoSelecionada: Funcao;
+  habilitarConsulta: boolean = true;
 
 
 
@@ -45,6 +46,7 @@ export class ConsfuncionarioComponent implements OnInit {
       nome: [null],
       loja: [null],
       funcao: [null],
+      situacao: [null],
     });
 
   }
@@ -81,7 +83,7 @@ export class ConsfuncionarioComponent implements OnInit {
         if ( nomePesquisa.length <= 0 ) {
           nomePesquisa = '@';
         }
-        if (( this.lojaSelecionada != null) && (this.lojaSelecionada != null) ) {
+        if (( this.lojaSelecionada != null) && (this.funcaoSelecionada != null) ) {
           this.pesquisarFuncionarioFuncaoLoja(nomePesquisa);
         } else {
           if ( this.funcaoSelecionada != null ) {
@@ -106,7 +108,11 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   pesquisarLoja(nomePesquisa: string) {
-    this.funcionarioService.getFuncionarioLoja(this.lojaSelecionada.idloja, nomePesquisa).subscribe(
+    let situacao = this.formulario.get('situacao').value;
+    if (situacao == null){
+      situacao = '@';
+    }
+    this.funcionarioService.getFuncionarioLoja(this.lojaSelecionada.idloja, nomePesquisa, situacao).subscribe(
       resposta => {
         this.funcionario = resposta as any;
       }
@@ -114,7 +120,11 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   pesquisarFuncao(nomePesquisa: string) {
-    this.funcionarioService.getFuncionarioFuncao(this.funcaoSelecionada.idfuncao, nomePesquisa).subscribe(
+    let situacao = this.formulario.get('situacao').value;
+    if (situacao == null){
+      situacao = '@';
+    }
+    this.funcionarioService.getFuncionarioFuncao(this.funcaoSelecionada.idfuncao, nomePesquisa, situacao).subscribe(
       resposta => {
         this.funcionario = resposta as any;
       }
@@ -122,7 +132,12 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   pesquisarFuncionarioFuncaoLoja(nomePesquisa: string) {
-    this.funcionarioService.getFuncionarioFuncaoLoja(this.lojaSelecionada.idloja, this.funcaoSelecionada.idfuncao, nomePesquisa ).subscribe(
+    let situacao = this.formulario.get('situacao').value;
+    if (situacao == null){
+      situacao = '@';
+    }
+    this.funcionarioService.getFuncionarioFuncaoLoja(this.lojaSelecionada.idloja,
+      this.funcaoSelecionada.idfuncao, nomePesquisa, situacao ).subscribe(
       resposta => {
         this.funcionario = resposta as any;
       }
@@ -150,5 +165,9 @@ export class ConsfuncionarioComponent implements OnInit {
     this.funcaoSelecionada = null;
     this.lojaSelecionada = null;
     this.consultar();
+  }
+
+  selecionarFuncionario(funcionarioConsulta: Funcionario) {
+    this.router.navigate([ '/cadasocontrole' ,   funcionarioConsulta.idfuncionario ]);
   }
 }

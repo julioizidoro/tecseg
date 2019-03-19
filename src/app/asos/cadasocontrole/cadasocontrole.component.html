@@ -7,16 +7,17 @@
 <div style="margin-left:10%;width:80%;">
 
 
-  <form [formGroup]="formulario">
+  <form [formGroup]="formularioAsoControle">
   <div class="row">
       <div class="form-group col-xs-4" >
-          <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Nome do funcionário"
-          [value]="funcionarioSelecionado.nome">
+          <label for="nomefuncionario">Nome</label>
+          <input type="text" class="form-control" id="nomefuncionario" placeholder="Nome do funcionário"
+          [value]="funcionarioSelecionado.nome" readonly="false">
         </div>
 
         <div class="form-group col-xs-1" >
-          <button type="button" class="btn btn-info" >
+          <br/>
+          <button type="button" class="btn btn-info"  routerLink="/consfuncionario" >
               <i class="fa fa-search" aria-hidden="true"></i>
           </button>
         </div>
@@ -34,7 +35,7 @@
         </div>
 
         <div class="form-group col-xs-2">
-          <label for="dataexame">Data Admissãol</label>
+          <label for="dataexame">Data do Exame</label>
           <input type="date" class="form-control" id="dataexame" placeholder="Data do Exame"
           formControlName="dataexame" >
         </div>
@@ -47,7 +48,7 @@
         </div>
 
         <div class="form-group col-xs-2">
-          <label for="datavencimento">Data Admissão</label>
+          <label for="datavencimento">Data Vencimento</label>
           <input type="date" class="form-control" id="datavencimento" placeholder="Data de Vencimento"
           formControlName="datavencimento" >
         </div>
@@ -74,6 +75,8 @@
 
 </div>
 <br/>
+
+
 </form>
 
 </div>

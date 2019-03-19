@@ -1,3 +1,4 @@
+import { Asocontrole } from './../../asos/model/asocontrole';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Funcionario } from '../model/funcionario';
@@ -108,11 +109,10 @@ export class CadfuncionarioComponent implements OnInit {
 
   salvar() {
     this.funcionario = this.formulario.value;
-    console.log(this.funcionario);
     this.funcionarioService.salvar(this.funcionario).subscribe(resposta => {
       this.funcionario = resposta as any;
-      console.log(this.funcionario);
     });
+    this.formulario.reset();
     this.router.navigate(['/consfuncionario']);
   }
 

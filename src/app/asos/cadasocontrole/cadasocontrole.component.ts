@@ -21,6 +21,7 @@ export class CadasocontroleComponent implements OnInit {
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
   asoControles: Asocontrole;
+  lastAsoControles: Asocontrole;
   funcionarioSelecionado: Funcionario;
 
   constructor(
@@ -81,11 +82,29 @@ export class CadasocontroleComponent implements OnInit {
   salvar() {
     this.asoControles = this.formularioAsoControle.value;
     this.asoControles.funcionario = this.funcionarioSelecionado;
-    this.asocontroleService.salvar(this.asoControles).subscribe(resposta => {
-      this.asoControles = resposta as any;
+    this.asocontroleService.getLast(this.asoControles.funcionario.idfuncionario).subscribe(resposta => {
+      this.lastAsoControles = resposta as any;
       console.log(this.asoControles);
-    });
-    this.router.navigate(['/consasocontrole']);
+      if ( this.lastAsoControles !=null ) {
+        this.lastAsoControles.finalizado = true;
+        this.asocontroleService.salvar(this.lastAsoControles).subscribe(resposta => {
+          this.asoControles = resposta as any;
+          console.log(this.asoControles);
+        });
+      }
+      this.asocontroleService.salvar(this.asoControles).subscribe(resposta => {
+        this.asoControles = resposta as any;
+        console.log(this.asoControles);
+      });
+      this.router.navigate(['/consasocontrole']);
+    },
+    err=>
+    {
+      console.log(err.error.erros.join(' '));
+    }
+    );
+
+
   }
 
   cancelar() {

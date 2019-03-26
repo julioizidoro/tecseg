@@ -8,6 +8,8 @@ import { AsotipoService } from '../asotipo.service';
 import { Asotipo } from '../model/asotipo';
 import { Asocontrole } from '../model/asocontrole';
 import * as moment from 'moment';
+import { Funcao } from 'src/app/funcao/model/funcao';
+import { FuncaoService } from 'src/app/funcao/funcao.service';
 
 
 @Component({
@@ -22,12 +24,15 @@ export class CadasocontroleComponent implements OnInit {
   tipoSelecionado: Asotipo;
   asoControles: Asocontrole;
   lastAsoControles: Asocontrole;
+  funcoes: Funcao[];
+  funcaoSelecionada: Funcao;
   funcionarioSelecionado: Funcionario;
 
   constructor(
     private formBuilder: FormBuilder,
     private funcionarioService: FuncionarioService,
     private asotipoService: AsotipoService,
+    private funcaoService: FuncaoService,
     private router: Router,
     private activeRrouter: ActivatedRoute,
     private asocontroleService: AsocontroleService
@@ -36,6 +41,7 @@ export class CadasocontroleComponent implements OnInit {
   ngOnInit() {
     this.funcionarioSelecionado = new Funcionario();
     this.carregarComboBox();
+    this.funcaoSelecionada = new Funcao();
     this.formularioAsoControle = this.formBuilder.group({
       idasocontrole: [null],
       dataexame: [null],
@@ -45,6 +51,7 @@ export class CadasocontroleComponent implements OnInit {
       exame: [null],
       asotipo: [null],
       funcionario: [null],
+      funcao: [null],
     });
 
     let id;
@@ -54,7 +61,18 @@ export class CadasocontroleComponent implements OnInit {
         this.funcionarioService.getFuncionarioId(id).subscribe(
           resposta => {
             this.funcionarioSelecionado = resposta as Funcionario;
-            console.log(this.funcionarioSelecionado);
+            this.funcaoSelecionada = this.funcionarioSelecionado.funcao;
+            this.formularioAsoControle = this.formBuilder.group({
+              idasocontrole: [null],
+              dataexame: [null],
+              datavencimento: [null],
+              finalizado: [null],
+              observacao: [null],
+              exame: [null],
+              asotipo: [null],
+              funcionario: [null],
+              funcao: this.funcaoSelecionada,
+            });
           },
           err => {
             console.log(err.error.erros.join(' '));
@@ -69,6 +87,9 @@ export class CadasocontroleComponent implements OnInit {
     this.asotipoService.listar().subscribe(resposta => {
       this.tipos = resposta as any;
     });
+    this.funcaoService.listar().subscribe(resposta => {
+      this.funcoes = resposta as any;
+    });
   }
 
   compararTipo(obj1, obj2) {
@@ -82,24 +103,25 @@ export class CadasocontroleComponent implements OnInit {
   salvar() {
     this.asoControles = this.formularioAsoControle.value;
     this.asoControles.funcionario = this.funcionarioSelecionado;
+    this.asoControles.funcionario.funcao = this.funcaoSelecionada;
     this.asocontroleService.getLast(this.asoControles.funcionario.idfuncionario).subscribe(resposta => {
       this.lastAsoControles = resposta as any;
       console.log(this.asoControles);
-      if ( this.lastAsoControles !=null ) {
-        this.lastAsoControles.finalizado = true;
-        this.asocontroleService.salvar(this.lastAsoControles).subscribe(resposta => {
-          this.asoControles = resposta as any;
-          console.log(this.asoControles);
-        });
-      }
       this.asocontroleService.salvar(this.asoControles).subscribe(resposta => {
         this.asoControles = resposta as any;
         console.log(this.asoControles);
+
+        if ( this.lastAsoControles !=null ) {
+          this.lastAsoControles.finalizado = true;
+          this.asocontroleService.salvar(this.lastAsoControles).subscribe(resposta => {
+            this.asoControles = resposta as any;
+            console.log(this.asoControles);
+          });
+        }
       });
       this.router.navigate(['/consasocontrole']);
     },
-    err=>
-    {
+    err => {
       console.log(err.error.erros.join(' '));
     }
     );
@@ -132,5 +154,14 @@ export class CadasocontroleComponent implements OnInit {
     );
 
   }
+
+  setFuncao() {
+    this.funcaoSelecionada = this.formularioAsoControle.get('funcao').value;
+  }
+
+  compararFuncao(obj1, obj2) {
+    return obj1 && obj2 ? obj1.idfuncao === obj2.idfuncao : obj1 === obj2;
+  }
+
 
 }

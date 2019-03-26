@@ -106,7 +106,7 @@ export class CadasocontroleComponent implements OnInit {
     this.asoControles.funcionario.funcao = this.funcaoSelecionada;
     if (this.asoControles.asotipo.idasotipo == 5){
       this.asoControles.funcionario.situacao = 'Inativo';
-    } else if ( this.asoControles.asotipo.idasotipo==4) {
+    } else if ( this.asoControles.asotipo.idasotipo == 4) {
       this.asoControles.funcionario.situacao = 'Ativo';
     }
     this.asocontroleService.getLast(this.asoControles.funcionario.idfuncionario).subscribe(resposta => {

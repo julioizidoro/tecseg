@@ -6,7 +6,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { routing } from './app.routing';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShareModule } from './share/share.module';
 
@@ -22,7 +21,6 @@ import { AsosModule } from './asos/asos.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    routing,
     ModalModule.forRoot(),
     ShareModule,
     FuncionarioModule,

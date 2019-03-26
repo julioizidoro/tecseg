@@ -86,7 +86,7 @@
               <td >
               <img src="#" width='40%'>
               </td>
-                    <td>{{ aso.funcionario.nome}}</td>
+                    <td><a [routerLink]="['/listaaso', aso.funcionario.idfuncionario ]" >{{ aso.funcionario.nome}}</a></td>
                     <td>{{ aso.funcionario.funcao.nome}}</td>
                     <td>{{ aso.funcionario.loja.nome }}</td>
                     <td>{{ aso.asotipo.nome }}</td>

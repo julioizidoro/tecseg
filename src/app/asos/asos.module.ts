@@ -1,3 +1,4 @@
+import { ListaasofuncionarioComponent } from './listaasofuncionario/listaasofuncionario.component';
 import { CadasocontroleComponent } from './cadasocontrole/cadasocontrole.component';
 import { AsotipoService } from './asotipo.service';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,7 @@ import { FuncionarioModule } from '../funcionario/funcionario.module';
 
 @NgModule({
   declarations: [
-    ConsasocontroleComponent, CadasocontroleComponent
+    ConsasocontroleComponent, CadasocontroleComponent, ListaasofuncionarioComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { FuncionarioModule } from '../funcionario/funcionario.module';
   exports: [
     ConsasocontroleComponent,
     CadasocontroleComponent,
+    ListaasofuncionarioComponent,
   ],
   providers: [
     FuncaoService,

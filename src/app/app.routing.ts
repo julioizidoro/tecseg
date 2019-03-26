@@ -6,6 +6,7 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { AppComponent } from './app.component';
 import { ConsasocontroleComponent } from './asos/consasocontrole/consasocontrole.component';
 import { LoginComponent } from './usuario/login/login/login.component';
+import { ListaasofuncionarioComponent } from './asos/listaasofuncionario/listaasofuncionario.component';
 
 
 const APP_ROUTER: Routes = [
@@ -15,6 +16,7 @@ const APP_ROUTER: Routes = [
   { path: 'cadfuncionario', component: CadfuncionarioComponent },
   { path: 'consasocontrole', component: ConsasocontroleComponent },
   { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
+  { path: 'listaaso/:id', component: ListaasofuncionarioComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
   { path: 'login', component: LoginComponent },
 ];

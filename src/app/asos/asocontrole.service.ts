@@ -77,4 +77,9 @@ export class AsocontroleService {
     return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/last/' + idfuncionario);
   }
 
+  getFuncionarioId(idfuncionario : number) {
+    return this.httpClient.get<Asocontrole>(env.baseApiUrl + 'asocontrole/id/' + idfuncionario);
+  }
+
+
 }

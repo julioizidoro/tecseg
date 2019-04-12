@@ -1,3 +1,4 @@
+import { ConstreinamentoComponent } from './treinamento/constreinamento/constreinamento.component';
 import { routing } from './app.routing';
 import { CadasocontroleComponent } from './asos/cadasocontrole/cadasocontrole.component';
 import { CadfuncionarioComponent } from './funcionario/cadfuncionario/cadfuncionario.component';
@@ -20,6 +21,7 @@ const APP_ROUTER: Routes = [
   { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
   { path: 'listaaso/:id', component: ListaasofuncionarioComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
+  { path: 'constreinamento', component: ConstreinamentoComponent },
   { path: 'login', component: LoginComponent },
 ];
 

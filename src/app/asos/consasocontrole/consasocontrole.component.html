@@ -84,7 +84,7 @@
 
             <tr *ngFor="let aso of asoControles" >
               <td >
-              <img src="#" width='40%'>
+              <img src="{{ aso.situacao}}" width='40%'>
               </td>
                     <td><a [routerLink]="['/listaaso', aso.funcionario.idfuncionario ]" >{{ aso.funcionario.nome}}</a></td>
                     <td>{{ aso.funcionario.funcao.nome}}</td>

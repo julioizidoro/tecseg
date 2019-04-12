@@ -154,10 +154,12 @@ pesquisar() {
       nome = '@';
     }
     this.getTipo(nome);
-  } else if (( nome == null) || (nome.length <= 0)) {
+  } else {
+    if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
+    }
+    this.getNome(nome);
   }
-  this.getNome(nome);
 }
 
 getNome(nome: string) {
@@ -286,6 +288,10 @@ pesquisarLimpar() {
   this.lojaSelecionada = null;
   this.tipoSelecionado = null;
   this.consultar();
+}
+
+gerarImagem(asoImagem : Asocontrole) {
+
 }
 
 }

@@ -1,3 +1,4 @@
+import { TreinamentoModule } from './treinamento/treinamento.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { AsosModule } from './asos/asos.module';
     NgxMaskModule.forRoot(),
     AsosModule,
     UsuarioModule,
+    TreinamentoModule,
     AppRoutingModule,
   ],
   providers: [

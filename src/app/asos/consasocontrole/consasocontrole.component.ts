@@ -10,6 +10,7 @@ import { Asocontrole } from '../model/asocontrole';
 import { Asotipo } from '../model/asotipo';
 import { now } from 'moment';
 import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-consasocontrole',
@@ -26,6 +27,9 @@ export class ConsasocontroleComponent implements OnInit {
   asoControles: Asocontrole[];
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
+  isFirstOpen = true;
+  oneAtATime: boolean = true;
+  bsInlineValue = new Date();
 
 
   constructor(
@@ -48,6 +52,10 @@ export class ConsasocontroleComponent implements OnInit {
       funcao: [],
       tipo: [],
     });
+    this.formulario.reset();
+    this.funcaoSelecionada = null;
+    this.lojaSelecionada = null;
+    this.tipoSelecionado = null;
   }
 
   carregarComboBox() {

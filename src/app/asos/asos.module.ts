@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FuncaoService } from '../funcao/funcao.service';
 import { AsocontroleService } from './asocontrole.service';
 import { FuncionarioModule } from '../funcionario/funcionario.module';
+import { AccordionModule } from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { FuncionarioModule } from '../funcionario/funcionario.module';
     ReactiveFormsModule,
     FuncaoModule,
     routing,
+    AccordionModule.forRoot(),
     HttpClientModule,
     FuncionarioModule,
   ],

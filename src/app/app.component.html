@@ -6,45 +6,37 @@
 
 <div class="aw-layout-page">
 
-  <nav *ngIf= "mostrarMenu" class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+  <nav class="navbar  navbar-fixed-top  navbar-default bg-success js-sticky-reference" id="main-navbar" style="background-color: #ABC; border-color: #000;">
     <div class="container-fluid">
-
-      <div class="navbar-header">
-        <a class="navbar-brand  hidden-xs" href="#">
-          <span>
-        <strong style="font-size: 22px;">TecSeg - Controle de Aso's</strong>
-      </span>
-
-        </a>
-
-        <ul class="nav  navbar-nav">
+      <div class="w-100 navbar-header" style="font-size: 22px;">
+        <ul class="nav navbar-nav">
           <li>
-            <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+            <a href="#" class="js-sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </li>
+        </ul>
+      
+        <a class="navbar-brand hidden-xs w-auto text-center" href="#">
+          <span>
+            <strong style="margin-left: 130%;font-size: 42px;">TecSeg</strong>
+          </span>
+        </a>
+        
+        <ul class="nav navbar-nav  navbar-right">
+          <li>
+            <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
           </li>
         </ul>
       </div>
-
-      <ul class="nav navbar-nav  navbar-right">
-
-
-
-
-
-        <li>
-          <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
-        </li>
-      </ul>
-
     </div>
   </nav>
 
-  <aside  *ngIf= "mostrarMenu" class="aw-layout-sidebar  js-sidebar">
+  <aside  class="aw-layout-sidebar  js-sidebar">
     <div class="aw-layout-sidebar__content">
 
     <nav class="aw-menu  js-menu">
       <ul class="aw-menu__list">
 
-        <li class="aw-menu__item">
+        <li class="aw-menu__item is-active">
           <a routerLink=""><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
         </li>
 

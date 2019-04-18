@@ -8,6 +8,7 @@ import { ConsfuncionarioComponent } from './consfuncionario/consfuncionario.comp
 import { CadfuncionarioComponent } from './cadfuncionario/cadfuncionario.component';
 import { routing } from '../app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccordionModule } from 'ngx-bootstrap';
 
 
 
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    AccordionModule.forRoot(),
     FuncaoModule,
     routing,
     HttpClientModule,

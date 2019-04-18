@@ -1,4 +1,5 @@
 .aw-layout-page {
+  background-color: #f9f9f9;
   position: relative;
   overflow-x: hidden;
   width: 100%;
@@ -48,7 +49,7 @@
   bottom: 0;
   z-index: 1000;
   height: 100%;
-  padding-top: 54px;
+  padding-top: 65px;
   margin-left: -211px;
   border-right-color: #e2e2e2;
   border-right: 1px solid;
@@ -354,13 +355,15 @@
   display: none;
 }
 .aw-menu__item {
+  font-size: 14px;
   position: relative;
   display: block;
+  border-bottom: 1px solid #d4c5c540;
 }
 .aw-menu__item > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 15px 20px;
   color: #1a1a1a;
   font-weight: 500;
 }

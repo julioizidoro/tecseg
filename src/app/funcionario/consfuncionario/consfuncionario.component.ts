@@ -23,6 +23,9 @@ export class ConsfuncionarioComponent implements OnInit {
   funcoes: Funcao[];
   funcaoSelecionada: Funcao;
   habilitarConsulta: boolean = true;
+  isFirstOpen = true;
+  oneAtATime: boolean = true;
+  bsInlineValue = new Date();
 
 
 

@@ -30,6 +30,7 @@ import { AsosModule } from './asos/asos.module';
     UsuarioModule,
     TreinamentoModule,
     AppRoutingModule,
+    
   ],
   providers: [
 

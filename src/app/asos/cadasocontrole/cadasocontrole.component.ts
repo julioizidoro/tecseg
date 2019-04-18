@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { Funcao } from 'src/app/funcao/model/funcao';
 import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Loja } from 'src/app/loja/model/loja';
 
 
 @Component({
@@ -45,6 +46,8 @@ export class CadasocontroleComponent implements OnInit {
     this.funcionarioSelecionado.nome = 'Nome do funcioário';
     this.funcaoSelecionada = new Funcao();
     this.funcaoSelecionada.nome = 'Função';
+    this.funcionarioSelecionado.loja = new Loja();
+    this.funcionarioSelecionado.loja.nome = 'Loja';
     this.carregarComboBox();
 
     this.formularioAsoControle = this.formBuilder.group({

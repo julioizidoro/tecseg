@@ -67,36 +67,39 @@
               class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
               <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Nome</th>
               <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Nome - Data Admissão - Função</th>
-              <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
               <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Admissão</th>
               <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Função</th>
               <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CBO</th>
               <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Loja</th>
               <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Situação</th>
+              <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"></th>
+
+
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let funcionario of funcionario"
                 class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.nome}}</td>
+                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.nome}}</td>
                 <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.dataadmissao | date: 'dd/MM/yyyy' }}</td>
                 <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.funcao.nome }}</td>
                 <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.funcao.cbo }}</td>
                 <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{ funcionario.loja.nome }}</td>
                 <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{ funcionario.situacao }}</td>
 
-                <td td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
-                  <button (click)="editar( funcionario)" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Tooltip on right" >
-                    <i class="fa  fa-pencil"></i>
-                  </button>
-                </td>
-                <td td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
-                    <div *ngIf="habilitarConsulta">
-                        <button  class="btn btn-info" (click)="selecionarFuncionario( funcionario )" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-                          <i class="glyphicon glyphicon-ok"></i>
-                        </button>
-                      </div>
-                </td>
+
+                  <div *ngIf="habilitarConsulta">
+                    <td>
+                      <button  class="btn btn-info" (click)="selecionarFuncionario( funcionario )" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </button>
+
+                    </td>
+                  </div>
+
+
+
               </tr>
           </tbody>
       </table>

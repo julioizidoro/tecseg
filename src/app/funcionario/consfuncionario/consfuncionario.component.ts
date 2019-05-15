@@ -116,7 +116,7 @@ export class ConsfuncionarioComponent implements OnInit {
 
   pesquisarLoja(nomePesquisa: string) {
     let situacao = this.formulario.get('situacao').value;
-    if (situacao == null){
+    if (situacao == null) {
       situacao = '@';
     }
     this.funcionarioService.getFuncionarioLoja(this.lojaSelecionada.idloja, nomePesquisa, situacao).subscribe(
@@ -128,7 +128,7 @@ export class ConsfuncionarioComponent implements OnInit {
 
   pesquisarFuncao(nomePesquisa: string) {
     let situacao = this.formulario.get('situacao').value;
-    if (situacao == null){
+    if (situacao == null) {
       situacao = '@';
     }
     this.funcionarioService.getFuncionarioFuncao(this.funcaoSelecionada.idfuncao, nomePesquisa, situacao).subscribe(
@@ -140,7 +140,7 @@ export class ConsfuncionarioComponent implements OnInit {
 
   pesquisarFuncionarioFuncaoLoja(nomePesquisa: string) {
     let situacao = this.formulario.get('situacao').value;
-    if (situacao == null){
+    if (situacao == null) {
       situacao = '@';
     }
     this.funcionarioService.getFuncionarioFuncaoLoja(this.lojaSelecionada.idloja,

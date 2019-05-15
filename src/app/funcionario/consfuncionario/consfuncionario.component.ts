@@ -3,7 +3,7 @@ import { FuncionarioService } from './../funcionario.service';
 import { Funcionario } from './../model/funcionario';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Loja } from 'src/app/loja/model/loja';
 import { LojaService } from 'src/app/loja/loja.service';
 import { stringify } from 'querystring';
@@ -22,9 +22,9 @@ export class ConsfuncionarioComponent implements OnInit {
   lojaSelecionada: Loja;
   funcoes: Funcao[];
   funcaoSelecionada: Funcao;
-  habilitarConsulta: boolean = true;
+  habilitarConsulta: false;
   isFirstOpen = true;
-  oneAtATime: boolean = true;
+  oneAtATime = true;
   bsInlineValue = new Date();
 
 
@@ -36,7 +36,8 @@ export class ConsfuncionarioComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private lojaService: LojaService,
-    private funcaoService: FuncaoService) {
+    private funcaoService: FuncaoService,
+    private activeRrouter: ActivatedRoute) {
       this.consultar();
     }
 
@@ -44,6 +45,9 @@ export class ConsfuncionarioComponent implements OnInit {
 
 
   ngOnInit() {
+    this.activeRrouter.params.subscribe(params => {
+      this.habilitarConsulta = params.asos;
+    });
     this.carregarComboBox();
     this.formulario = this.formBuilder.group({
       nome: [null],

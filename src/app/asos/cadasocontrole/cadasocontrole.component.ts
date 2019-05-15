@@ -111,12 +111,12 @@ export class CadasocontroleComponent implements OnInit {
   salvar() {
     this.asoControles = this.formularioAsoControle.value;
     this.asoControles.funcionario = this.funcionarioSelecionado;
-    if (this.asoControles.asotipo.idasotipo == 5){
+    if (this.asoControles.asotipo.idasotipo == 5) {
       this.asoControles.funcionario.situacao = 'Inativo';
     } else if ( this.asoControles.asotipo.idasotipo == 4) {
       this.asoControles.funcionario.situacao = 'Ativo';
     }
-    let idfuncao = this.funcionarioSelecionado.funcao.idfuncao;
+    const idfuncao = this.funcionarioSelecionado.funcao.idfuncao;
     this.asoControles.funcionario.funcao = this.funcaoSelecionada;
     this.asocontroleService.getLast(this.asoControles.funcionario.idfuncionario).subscribe(resposta => {
       this.lastAsoControles = resposta as any;
@@ -131,10 +131,10 @@ export class CadasocontroleComponent implements OnInit {
         this.asoControles = resposta2 as any;
         console.log(this.asoControles);
 
-        if ( this.lastAsoControles !=null ) {
+        if ( this.lastAsoControles != null ) {
           this.lastAsoControles.funcionario = this.asoControles.funcionario;
           this.lastAsoControles.finalizado = true;
-          this.asocontroleService.salvar(this.lastAsoControles).subscribe(resposta => {
+          this.asocontroleService.salvar(this.lastAsoControles).subscribe( resposta => {
             this.asoControles = resposta as any;
             console.log(this.asoControles);
           });
@@ -158,7 +158,7 @@ export class CadasocontroleComponent implements OnInit {
     this.tipoSelecionado = this.formularioAsoControle.get('asotipo').value;
 
     let dataVencimento = this.formularioAsoControle.get('dataexame').value;
-    let dias = this.tipoSelecionado.periodicidade;
+    const dias = this.tipoSelecionado.periodicidade;
 
     this.asocontroleService.calcularVencimento(dataVencimento, dias).subscribe(resposta => {
       dataVencimento = resposta as any;
@@ -168,8 +168,7 @@ export class CadasocontroleComponent implements OnInit {
         datavencimento: dataVencimento
     });
     },
-    err=>
-    {
+    err => {
       console.log(err.error.erros.join(' '));
     }
     );
@@ -182,6 +181,10 @@ export class CadasocontroleComponent implements OnInit {
 
   compararFuncao(obj1, obj2) {
     return obj1 && obj2 ? obj1.idfuncao === obj2.idfuncao : obj1 === obj2;
+  }
+
+  consultaFuncionario() {
+    this.router.navigate([ '/consfuncionario' ,   true ]);
   }
 
 

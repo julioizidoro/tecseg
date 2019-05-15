@@ -12,6 +12,7 @@ import { ListaasofuncionarioComponent } from './asos/listaasofuncionario/listaas
 const APP_ROUTER: Routes = [
   { path: '', component: AppComponent },
   { path: 'consfuncionario', component: ConsfuncionarioComponent },
+  { path: 'consfuncionario/:asos', component: ConsfuncionarioComponent },
   { path: 'cadfuncionario/:id', component: CadfuncionarioComponent },
   { path: 'cadfuncionario', component: CadfuncionarioComponent },
   { path: 'consasocontrole', component: ConsasocontroleComponent },

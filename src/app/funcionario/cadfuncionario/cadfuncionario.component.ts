@@ -1,3 +1,4 @@
+import { SetorService } from './../../setor/setor.service';
 import { Asocontrole } from './../../asos/model/asocontrole';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -8,6 +9,8 @@ import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { LojaService } from 'src/app/loja/loja.service';
 import { FuncionarioService } from '../funcionario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Setor } from 'src/app/setor/model/setor';
+
 
 
 @Component({
@@ -22,13 +25,18 @@ export class CadfuncionarioComponent implements OnInit {
   pessoaFisica = false;
   funcoes: Funcao[];
   lojas: Loja[];
+  setores: Setor[];
   funcaoSelecionada: Funcao;
   lojaSelecionada: Loja;
+  setorSelecionado: Setor;
+  public maskCPF = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+  public maskPIS = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '.' , /[0-9]/, /[0-9]/, '.', /[0-9]/];
 
   constructor(
     private formBuilder: FormBuilder,
     private funcaoService: FuncaoService,
     private lojaService: LojaService,
+    private setorService: SetorService,
     private funcionarioService: FuncionarioService,
     private router: Router,
     private activeRrouter: ActivatedRoute
@@ -37,13 +45,22 @@ export class CadfuncionarioComponent implements OnInit {
   ngOnInit() {
     this.carregarComboBox();
     this.funcaoSelecionada = new Funcao();
+    this.funcaoSelecionada.cbo = '';
     this.formulario = this.formBuilder.group({
       idfuncionario: [null],
       nome: [null],
       dataadmissao: [null],
       situacao: [1],
       funcao: [null],
-      loja: [null]
+      loja: [null],
+      cpf: [null],
+      rg: [null],
+      uf: [null],
+      datanascimento: [null],
+      pis: [null],
+      ctps: [null],
+      serie: [null],
+      setor: [null]
     });
     let id;
     this.activeRrouter.params.subscribe(params => {
@@ -60,7 +77,15 @@ export class CadfuncionarioComponent implements OnInit {
                 dataadmissao: [null],
                 situacao: [1],
                 funcao: [null],
-                loja: [null]
+                loja: [null],
+                cpf: [null],
+                rg: [null],
+                uf: [null],
+                datanascimento: [null],
+                pis: [null],
+                ctps: [null],
+                serie: [null],
+                setor: [null]
               });
             } else {
               this.funcaoSelecionada = this.funcionario.funcao;
@@ -70,7 +95,15 @@ export class CadfuncionarioComponent implements OnInit {
                 dataadmissao: [this.funcionario.dataadmissao],
                 situacao: [this.funcionario.situacao],
                 funcao: [this.funcionario.funcao],
-                loja: [this.funcionario.loja]
+                loja: [this.funcionario.loja],
+                cpf: [this.funcionario.cpf],
+                rg: [this.funcionario.rg],
+                uf: [this.funcionario.uf],
+                datanascimento: [this.funcionario.datanascimento],
+                pis: [this.funcionario.pis],
+                ctps: [this.funcionario.ctps],
+                serie: [this.funcionario.serie],
+                setor: [this.funcionario.setor]
               });
             }
           },
@@ -89,6 +122,9 @@ export class CadfuncionarioComponent implements OnInit {
     this.lojaService.listar().subscribe(resposta => {
       this.lojas = resposta as any;
     });
+    this.setorService.listar().subscribe(resposta => {
+      this.setores = resposta as any;
+    });
   }
 
   setFuncao() {
@@ -99,12 +135,20 @@ export class CadfuncionarioComponent implements OnInit {
     this.lojaSelecionada = this.formulario.get('loja').value;
   }
 
+  setSetor() {
+    this.setorSelecionado = this.formulario.get('setor').value;
+  }
+
   compararFuncao(obj1, obj2) {
     return obj1 && obj2 ? obj1.idfuncao === obj2.idfuncao : obj1 === obj2;
   }
 
   compararLoja(obj1, obj2) {
     return obj1 && obj2 ? obj1.idloja === obj2.idloja : obj1 === obj2;
+  }
+
+  compararSetor(obj1, obj2) {
+    return obj1 && obj2 ? obj1.idsetor === obj2.idSetor : obj1 === obj2;
   }
 
   salvar() {

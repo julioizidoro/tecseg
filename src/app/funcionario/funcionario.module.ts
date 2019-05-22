@@ -9,6 +9,7 @@ import { CadfuncionarioComponent } from './cadfuncionario/cadfuncionario.compone
 import { routing } from '../app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -21,6 +22,7 @@ import { AccordionModule } from 'ngx-bootstrap';
     FuncaoModule,
     routing,
     HttpClientModule,
+    TextMaskModule,
   ],
   exports: [
     ConsfuncionarioComponent,

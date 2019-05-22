@@ -1,3 +1,7 @@
+import { ClinicaModule } from './clinica/clinica.module';
+import { AsoagendaModule } from './asoagenda/asoagenda.module';
+import { CadasoagendaComponent } from './asoagenda/cadasoagenda/cadasoagenda.component';
+import { Asoagenda } from './asoagenda/model/asoagenda';
 import { TreinamentoModule } from './treinamento/treinamento.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { FuncionarioModule } from './funcionario/funcionario.module';
@@ -7,16 +11,18 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShareModule } from './share/share.module';
 
 import {NgxMaskModule} from 'ngx-mask';
 import { AsosModule } from './asos/asos.module';
 
 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,10 @@ import { AsosModule } from './asos/asos.module';
     NgxMaskModule.forRoot(),
     AsosModule,
     UsuarioModule,
+    ClinicaModule,
     TreinamentoModule,
+    AsoagendaModule,
     AppRoutingModule,
-    
   ],
   providers: [
 

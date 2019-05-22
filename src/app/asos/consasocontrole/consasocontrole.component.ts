@@ -28,7 +28,7 @@ export class ConsasocontroleComponent implements OnInit {
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
   isFirstOpen = true;
-  oneAtATime: boolean = true;
+  oneAtATime: true;
   bsInlineValue = new Date();
 
 
@@ -103,8 +103,8 @@ export class ConsasocontroleComponent implements OnInit {
 }
 
 pesquisar() {
-  let dataI  = this.formulario.get('datavencimentoinicial').value;
-  let dataF = this.formulario.get('datavencimentofinal').value;
+  const dataI  = this.formulario.get('datavencimentoinicial').value;
+  const dataF = this.formulario.get('datavencimentofinal').value;
   let nome = this.formulario.get('nome').value;
   if ((dataI != null) && (dataF != null) && (this.lojaSelecionada != null)
   && (this.funcaoSelecionada != null) && (this.tipoSelecionado != null) ) {
@@ -113,7 +113,7 @@ pesquisar() {
     }
     this.getAllAsos(dataI, dataF, nome);
   }  else if ((dataI != null) && (dataF != null) &&  (this.funcaoSelecionada != null) ) {
-    if (( nome ==null) || (nome.length <= 0)) {
+    if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getDataVencimentoFuncao(dataI, dataF, nome);
@@ -128,36 +128,36 @@ pesquisar() {
     }
     this.getDataVencimentoTipo(dataI, dataF, nome);
   } else if ((dataI != null) && (dataF != null)) {
-    if (( nome ==null) || (nome.length <= 0)) {
+    if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getDataVencimento(dataI, dataF, nome);
-  } else if ((this.funcaoSelecionada !=null ) && (this.lojaSelecionada != null) ) {
+  } else if ((this.funcaoSelecionada != null ) && (this.lojaSelecionada != null) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getFuncaoLoja(nome);
-  } else if ((this.lojaSelecionada !=null ) && (this.tipoSelecionado != null) ) {
+  } else if ((this.lojaSelecionada != null ) && (this.tipoSelecionado != null) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getLojaTipo(nome);
-  } else if ((this.funcaoSelecionada !=null ) && (this.tipoSelecionado != null) ) {
+  } else if ((this.funcaoSelecionada != null ) && (this.tipoSelecionado != null) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getFuncaoTipo(nome);
-  } else if ((this.lojaSelecionada !=null ) ) {
+  } else if ((this.lojaSelecionada != null ) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getLoja(nome);
-  } else if ((this.funcaoSelecionada !=null ) ) {
+  } else if ((this.funcaoSelecionada != null ) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
     this.getFuncao(nome);
-  } else if ((this.tipoSelecionado!=null ) ) {
+  } else if ((this.tipoSelecionado != null ) ) {
     if (( nome == null) || (nome.length <= 0)) {
       nome = '@';
     }
@@ -298,7 +298,7 @@ pesquisarLimpar() {
   this.consultar();
 }
 
-gerarImagem(asoImagem : Asocontrole) {
+gerarImagem(asoImagem: Asocontrole) {
 
 }
 

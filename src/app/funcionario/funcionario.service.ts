@@ -24,11 +24,11 @@ export class FuncionarioService {
   }
 
   getFuncionarioFuncao(id: number, nome: string, situacao: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/funcao/' +  id + "/" + nome + "/"+ situacao);
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/funcao/' +  id + '/' + nome + '/' + situacao);
   }
 
   getFuncionarioLoja(id: number, nome: string, situacao: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + "/" + nome + "/"+ situacao);
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + '/' + nome + '/' + situacao);
   }
 
   getFuncionarioNome(nome: string): Observable<Funcionario> {
@@ -36,6 +36,6 @@ export class FuncionarioService {
   }
 
   getFuncionarioFuncaoLoja(idloja: number, idfuncao: number, nome: string, situacao: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + idloja + "/" + idfuncao + "/" + nome + "/"+ situacao);
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + idloja + '/' + idfuncao + '/' + nome + '/' + situacao);
   }
 }

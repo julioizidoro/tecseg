@@ -10,6 +10,7 @@ import { LojaService } from 'src/app/loja/loja.service';
 import { FuncionarioService } from '../funcionario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Setor } from 'src/app/setor/model/setor';
+import { ValidateBrService } from 'angular-validate-br';
 
 
 
@@ -29,6 +30,7 @@ export class CadfuncionarioComponent implements OnInit {
   funcaoSelecionada: Funcao;
   lojaSelecionada: Loja;
   setorSelecionado: Setor;
+  validateBrService: ValidateBrService;
   public maskCPF = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   public maskPIS = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '.' , /[0-9]/, /[0-9]/, '.', /[0-9]/];
 
@@ -40,6 +42,7 @@ export class CadfuncionarioComponent implements OnInit {
     private funcionarioService: FuncionarioService,
     private router: Router,
     private activeRrouter: ActivatedRoute
+
   ) {}
 
   ngOnInit() {
@@ -53,7 +56,7 @@ export class CadfuncionarioComponent implements OnInit {
       situacao: [1],
       funcao: [null],
       loja: [null],
-      cpf: [null],
+      cpf: [null, this.validateBrService.cpf],
       rg: [null],
       uf: [null],
       datanascimento: [null],
@@ -78,7 +81,7 @@ export class CadfuncionarioComponent implements OnInit {
                 situacao: [1],
                 funcao: [null],
                 loja: [null],
-                cpf: [null],
+                cpf: [null, this.validateBrService.cpf],
                 rg: [null],
                 uf: [null],
                 datanascimento: [null],
@@ -96,7 +99,7 @@ export class CadfuncionarioComponent implements OnInit {
                 situacao: [this.funcionario.situacao],
                 funcao: [this.funcionario.funcao],
                 loja: [this.funcionario.loja],
-                cpf: [this.funcionario.cpf],
+                cpf: [this.funcionario.cpf, this.validateBrService.cpf],
                 rg: [this.funcionario.rg],
                 uf: [this.funcionario.uf],
                 datanascimento: [this.funcionario.datanascimento],

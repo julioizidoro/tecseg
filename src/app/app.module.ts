@@ -16,6 +16,7 @@ import { ShareModule } from './share/share.module';
 
 import {NgxMaskModule} from 'ngx-mask';
 import { AsosModule } from './asos/asos.module';
+import { AngularValidateBrLibModule } from 'angular-validate-br';
 
 
 
@@ -32,6 +33,7 @@ import { AsosModule } from './asos/asos.module';
     ShareModule,
     FuncionarioModule,
     NgxMaskModule.forRoot(),
+    AngularValidateBrLibModule,
     AsosModule,
     UsuarioModule,
     ClinicaModule,

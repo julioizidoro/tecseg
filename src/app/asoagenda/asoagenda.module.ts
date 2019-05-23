@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FuncaoService } from '../funcao/funcao.service';
 import { AsotipoService } from '../asos/asotipo.service';
 import { AccordionModule } from 'ngx-bootstrap';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AccordionModule } from 'ngx-bootstrap';
     routing,
     HttpClientModule,
     AccordionModule.forRoot(),
+    TextMaskModule,
   ],
   exports: [
     ConsasoagendaComponent,

@@ -111,9 +111,9 @@ export class CadasocontroleComponent implements OnInit {
   salvar() {
     this.asoControles = this.formularioAsoControle.value;
     this.asoControles.funcionario = this.funcionarioSelecionado;
-    if (this.asoControles.asotipo.idasotipo == 5) {
+    if (this.asoControles.asotipo.idasotipo === 5) {
       this.asoControles.funcionario.situacao = 'Inativo';
-    } else if ( this.asoControles.asotipo.idasotipo == 4) {
+    } else if ( this.asoControles.asotipo.idasotipo === 4) {
       this.asoControles.funcionario.situacao = 'Ativo';
     }
     const idfuncao = this.funcionarioSelecionado.funcao.idfuncao;
@@ -121,7 +121,7 @@ export class CadasocontroleComponent implements OnInit {
     this.asocontroleService.getLast(this.asoControles.funcionario.idfuncionario).subscribe(resposta => {
       this.lastAsoControles = resposta as any;
       console.log(this.asoControles);
-      if (this.asoControles.funcionario.funcao.idfuncao != idfuncao) {
+      if (this.asoControles.funcionario.funcao.idfuncao !== idfuncao) {
         this.asoControles.funcionario.funcao = this.funcaoSelecionada;
         this.funcionarioService.salvar(this.asoControles.funcionario).subscribe(resposta1 => {
           this.asoControles.funcionario = resposta1 as any;

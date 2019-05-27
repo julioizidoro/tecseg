@@ -28,11 +28,7 @@ import { AngularValidateBrLibModule } from 'angular-validate-br';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
-    ModalModule.forRoot(),
-    ShareModule,
     FuncionarioModule,
-    NgxMaskModule.forRoot(),
     AngularValidateBrLibModule,
     AsosModule,
     UsuarioModule,

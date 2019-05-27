@@ -11,12 +11,17 @@ export class FuncionarioService {
 
   constructor( private httpClient: HttpClient ) { }
 
-  listar(): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios');
+  listar(nome: string, sit: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' + nome + '/' + sit);
   }
 
   salvar(funcionario: Funcionario): Observable<any> {
     return this.httpClient.post<any>(env.baseApiUrl + 'funcionarios/salvar', funcionario);
+  }
+
+  atualizar(funcionario: Funcionario): Observable<any> {
+    console.log(funcionario);
+    return this.httpClient.post<any>(env.baseApiUrl + 'funcionarios/atualizar', funcionario);
   }
 
   getFuncionarioId(id: number): Observable<Funcionario> {
@@ -29,10 +34,6 @@ export class FuncionarioService {
 
   getFuncionarioLoja(id: number, nome: string, situacao: string): Observable<Funcionario> {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/loja/' +  id + '/' + nome + '/' + situacao);
-  }
-
-  getFuncionarioNome(nome: string): Observable<Funcionario> {
-    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/' +  nome);
   }
 
   getFuncionarioFuncaoLoja(idloja: number, idfuncao: number, nome: string, situacao: string): Observable<Funcionario> {

@@ -21,7 +21,6 @@ import { TextMaskModule } from 'angular2-text-mask';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    routing,
     HttpClientModule,
     AccordionModule.forRoot(),
     TextMaskModule,

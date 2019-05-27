@@ -67,7 +67,7 @@ export class ConsfuncionarioComponent implements OnInit {
     });
   }
     consultar() {
-      this.funcionarioService.listar().subscribe(
+      this.funcionarioService.listar('@', '@').subscribe(
         resposta => {
           this.funcionario = resposta as any;
         }
@@ -81,33 +81,28 @@ export class ConsfuncionarioComponent implements OnInit {
 
   pesquisar() {
     let nomePesquisa = this.formulario.get('nome').value;
-    if (nomePesquisa == null ) {
-      nomePesquisa = '';
+    if (nomePesquisa == null) {
+      nomePesquisa = '@';
     }
-    if (( nomePesquisa.length > 0 ) && ( this.funcaoSelecionada == null ) && (this.lojaSelecionada == null)) {
-      this.pesquisarNome();
+    if ((nomePesquisa.length > 0) && (this.funcaoSelecionada == null) && (this.lojaSelecionada == null)) {
+      this.pesquisarNome(nomePesquisa);
+    } else if ((this.lojaSelecionada != null) && (this.funcaoSelecionada != null)) {
+      this.pesquisarFuncionarioFuncaoLoja(nomePesquisa);
+    } else if (this.funcaoSelecionada != null) {
+        this.pesquisarFuncao(nomePesquisa);
+    } else if (this.lojaSelecionada != null) {
+          this.pesquisarLoja(nomePesquisa);
     } else {
-        if ( nomePesquisa.length <= 0 ) {
-          nomePesquisa = '@';
-        }
-        if (( this.lojaSelecionada != null) && (this.funcaoSelecionada != null) ) {
-          this.pesquisarFuncionarioFuncaoLoja(nomePesquisa);
-        } else {
-          if ( this.funcaoSelecionada != null ) {
-            this.pesquisarFuncao( nomePesquisa );
-          } else {
-            if ( this.lojaSelecionada != null ) {
-              this.pesquisarLoja(nomePesquisa);
-            }
-          }
-        }
+      this.pesquisarNome(nomePesquisa);
     }
-    console.log('teste');
-  }
+}
 
-  pesquisarNome() {
-    const nomePesquisa = this.formulario.get('nome').value;
-    this.funcionarioService.getFuncionarioNome(nomePesquisa).subscribe(
+  pesquisarNome(nomePesquisa: string) {
+    let situacao = this.formulario.get('situacao').value;
+    if (situacao == null) {
+      situacao = '@';
+    }
+    this.funcionarioService.listar(nomePesquisa, situacao).subscribe(
       resposta => {
         this.funcionario = resposta as any;
       }

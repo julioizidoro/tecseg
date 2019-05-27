@@ -14,6 +14,7 @@ import { ValidateBrService } from 'angular-validate-br';
 
 
 
+
 @Component({
   selector: 'app-cadfuncionario',
   templateUrl: './cadfuncionario.component.html',
@@ -56,14 +57,14 @@ export class CadfuncionarioComponent implements OnInit {
       situacao: [1],
       funcao: [null],
       loja: [null],
-      cpf: [null, this.validateBrService.cpf],
+      cpf: [null],
       rg: [null],
       uf: [null],
       datanascimento: [null],
       pis: [null],
       ctps: [null],
       serie: [null],
-      setor: [null]
+      setor: [null],
     });
     let id;
     this.activeRrouter.params.subscribe(params => {
@@ -81,14 +82,14 @@ export class CadfuncionarioComponent implements OnInit {
                 situacao: [1],
                 funcao: [null],
                 loja: [null],
-                cpf: [null, this.validateBrService.cpf],
+                cpf: [null],
                 rg: [null],
                 uf: [null],
                 datanascimento: [null],
                 pis: [null],
                 ctps: [null],
                 serie: [null],
-                setor: [null]
+                setor: [null],
               });
             } else {
               this.funcaoSelecionada = this.funcionario.funcao;
@@ -99,7 +100,7 @@ export class CadfuncionarioComponent implements OnInit {
                 situacao: [this.funcionario.situacao],
                 funcao: [this.funcionario.funcao],
                 loja: [this.funcionario.loja],
-                cpf: [this.funcionario.cpf, this.validateBrService.cpf],
+                cpf: [this.funcionario.cpf],
                 rg: [this.funcionario.rg],
                 uf: [this.funcionario.uf],
                 datanascimento: [this.funcionario.datanascimento],
@@ -156,9 +157,20 @@ export class CadfuncionarioComponent implements OnInit {
 
   salvar() {
     this.funcionario = this.formulario.value;
+    console.log(this.funcionario);
+    if (this.funcionario.idfuncionario == null) {
+      this.funcionarioService.salvar(this.funcionario).subscribe(resposta => {
+        this.funcionario = resposta as any;
+      });
+    } else {
+      this.funcionarioService.atualizar(this.funcionario).subscribe(resposta => {
+        this.funcionario = resposta as any;
+      });
+    }
     this.funcionarioService.salvar(this.funcionario).subscribe(resposta => {
       this.funcionario = resposta as any;
     });
+    console.log(this.funcionario);
     this.formulario.reset();
     this.router.navigate(['/consfuncionario']);
   }

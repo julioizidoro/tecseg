@@ -4,9 +4,13 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/',
-  baseApiUrl: 'http://localhost:8080/'
+ // baseUrl: 'http://localhost:8080/',
+ // baseApiUrl: 'http://localhost:8080/'
+ baseUrl: 'https://systm.com.br/',
+  baseApiUrl: 'https://systm.com.br/tecseg-api/'
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

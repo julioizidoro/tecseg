@@ -14,6 +14,7 @@ import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AsocontroleService } from 'src/app/asos/asocontrole.service';
 import { Loja } from 'src/app/loja/model/loja';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cadasoagenda',
@@ -34,6 +35,8 @@ export class CadasoagendaComponent implements OnInit {
   clinicas: Clinica[];
   enabledFuncao = false;
   public maskHora = [/[0-9]/, /[0-9]/, ':', /[0-9]/, /[0-9]/];
+  rotaConsulta: string;
+  inscricao: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,7 +72,7 @@ export class CadasoagendaComponent implements OnInit {
     });
 
     let id;
-    this.activeRrouter.params.subscribe(params => {
+    this.inscricao = this.activeRrouter.params.subscribe(params => {
       id = params.id;
       if (id != null) {
         this.funcionarioService.getFuncionarioId(id).subscribe(
@@ -83,7 +86,7 @@ export class CadasoagendaComponent implements OnInit {
               funcionario: this.funcionarioSelecionado,
               asotipo: [null],
               funcao: this.funcionarioSelecionado.funcao,
-              clinica: [null],
+              clinica: this.clinicaSelecionada,
             });
           },
           err => {
@@ -103,6 +106,9 @@ export class CadasoagendaComponent implements OnInit {
     });
     this.clinicaService.listar().subscribe(resposta => {
       this.clinicas = resposta as any;
+      if ( this.clinicas.length === 1) {
+        this.clinicaSelecionada = this.clinicas[0];
+      }
     });
   }
 
@@ -136,7 +142,20 @@ export class CadasoagendaComponent implements OnInit {
   }
 
   consultaFuncionario() {
-    this.router.navigate([ '/consfuncionario' ,   true ]);
+    this.router.navigate(['/consfuncionario'] ,  { queryParams: {habilitarConsulta: true, rota: 'asoagenda' }});
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnDestroy() {
+    this.inscricao.unsubscribe();
+  }
+
+  salvar() {
+
+  }
+
+  cancelar() {
+
   }
 
 

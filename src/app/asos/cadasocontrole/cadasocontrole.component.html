@@ -39,26 +39,26 @@
           [value]="funcionarioSelecionado.loja.nome">
         </div>
 
-        <div class="form-group col-md-2 col-sm-12">
+        <div class="form-group col-md-4 col-sm-12">
           <label for="dataexame">Data do Exame</label>
           <input type="date" class="form-control" id="dataexame" placeholder="Data do Exame"
           formControlName="dataexame" >
         </div>
 
-        <div class="form-group col-md-3 col-sm-12" >
+        <div class="form-group col-md-4 col-sm-12" >
           <label for="tipo">Tipo</label>
           <select class="form-control" formControlName="asotipo"  [compareWith]="compararTipo" (change)="setTipo()">
               <option *ngFor="let tipo of tipos" [ngValue]="tipo"> {{ tipo.nome }}</option>
            </select>
         </div>
 
-        <div class="form-group col-md-2 col-sm-12">
+        <div class="form-group col-md-4 col-sm-12">
           <label for="datavencimento">Data Vencimento</label>
           <input type="date" class="form-control" id="datavencimento" placeholder="Data de Vencimento"
           formControlName="datavencimento" >
         </div>
 
-        <div class="form-group col-md-5 col-sm-12" >
+        <div class="form-group col-md-12 col-sm-12" >
           <label for="obs">Observação</label>
           <input type="text" class="form-control" id="obs" placeholder="Observação"
               formControlName="observacao" >

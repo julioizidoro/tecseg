@@ -21,9 +21,9 @@ const APP_ROUTER: Routes = [
   { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
   { path: 'listaaso/:id', component: ListaasofuncionarioComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
-  { path: 'consasoaagenda', component: ConsasoagendaComponent },
-  { path: 'cadasoaagenda', component: CadasoagendaComponent },
-  { path: 'cadasoaagenda/:id', component: CadasoagendaComponent },
+  { path: 'consasoagenda', component: ConsasoagendaComponent },
+  { path: 'cadasoagenda', component: CadasoagendaComponent },
+  { path: 'cadasoagenda/:id', component: CadasoagendaComponent },
   { path: 'login', component: LoginComponent },
 ];
 

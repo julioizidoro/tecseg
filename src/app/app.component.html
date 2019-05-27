@@ -23,7 +23,7 @@
         
         <ul class="nav navbar-nav  navbar-right">
           <li>
-            <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" ><em class="fa  fa-sign-out"></em></a>
           </li>
         </ul>
       </div>
@@ -62,7 +62,7 @@
             </a>
 
             <ul class="aw-menu__list  aw-menu__list--sublist">
-                <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consasoaagenda">Agendamento</a></li>
+                <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consasoagenda">Agendamento</a></li>
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consasocontrole">Controle</a></li>
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="">Relatório</a></li>
             </ul>

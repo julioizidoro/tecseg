@@ -184,7 +184,7 @@ export class CadasocontroleComponent implements OnInit {
   }
 
   consultaFuncionario() {
-    this.router.navigate([ '/consfuncionario' ,   true ]);
+    this.router.navigate(['/consfuncionario'] ,  { queryParams: {habilitarConsulta: true, rota: 'asocontrole'}});
   }
 
 

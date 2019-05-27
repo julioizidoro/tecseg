@@ -10,18 +10,23 @@ import { ConsasocontroleComponent } from './asos/consasocontrole/consasocontrole
 import { LoginComponent } from './usuario/login/login/login.component';
 import { ListaasofuncionarioComponent } from './asos/listaasofuncionario/listaasofuncionario.component';
 import { NgModule } from '@angular/core';
+import { ConsasoagendaComponent } from './asoagenda/consasoagenda/consasoagenda.component';
+import { CadasoagendaComponent } from './asoagenda/cadasoagenda/cadasoagenda.component';
 
 
-const APP_ROUTER: Routes = [
+const appRoutes: Routes = [
   { path: '', component: AppComponent },
   { path: 'consfuncionario', component: ConsfuncionarioComponent },
+  { path: 'consfuncionario/:asos', component: ConsfuncionarioComponent },
   { path: 'cadfuncionario/:id', component: CadfuncionarioComponent },
   { path: 'cadfuncionario', component: CadfuncionarioComponent },
   { path: 'consasocontrole', component: ConsasocontroleComponent },
   { path: 'cadasocontrole/:id', component: CadasocontroleComponent },
   { path: 'listaaso/:id', component: ListaasofuncionarioComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
-  { path: 'constreinamento', component: ConstreinamentoComponent },
+  { path: 'consasoagenda', component: ConsasoagendaComponent },
+  { path: 'cadasoagenda', component: CadasoagendaComponent },
+  { path: 'cadasoagenda/:id', component: CadasoagendaComponent },
   { path: 'login', component: LoginComponent },
 ];
 
@@ -29,7 +34,7 @@ const APP_ROUTER: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(APP_ROUTER)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 

@@ -14,6 +14,7 @@ import { CadasoagendaComponent } from './asoagenda/cadasoagenda/cadasoagenda.com
 const APP_ROUTER: Routes = [
   { path: '', component: AppComponent },
   { path: 'consfuncionario', component: ConsfuncionarioComponent },
+  { path: 'consfuncionario/:habilita/:rota', component: ConsfuncionarioComponent },
   { path: 'consfuncionario/:asos', component: ConsfuncionarioComponent },
   { path: 'cadfuncionario/:id', component: CadfuncionarioComponent },
   { path: 'cadfuncionario', component: CadfuncionarioComponent },
@@ -22,8 +23,8 @@ const APP_ROUTER: Routes = [
   { path: 'listaaso/:id', component: ListaasofuncionarioComponent },
   { path: 'cadasocontrole', component: CadasocontroleComponent },
   { path: 'consasoagenda', component: ConsasoagendaComponent },
-  { path: 'cadasoagenda', component: CadasoagendaComponent },
-  { path: 'cadasoagenda/:id', component: CadasoagendaComponent },
+  { path: 'cadasoagenda/:id/:rota', component: CadasoagendaComponent },
+  { path: 'cadasoagenda/:rota', component: CadasoagendaComponent },
   { path: 'login', component: LoginComponent },
 ];
 

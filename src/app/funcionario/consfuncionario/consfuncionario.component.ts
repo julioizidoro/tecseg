@@ -26,6 +26,8 @@ export class ConsfuncionarioComponent implements OnInit {
   isFirstOpen = true;
   oneAtATime = true;
   bsInlineValue = new Date();
+  rotaAnterior: string;
+
 
 
 
@@ -46,7 +48,8 @@ export class ConsfuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.activeRrouter.params.subscribe(params => {
-      this.habilitarConsulta = params.asos;
+      this.habilitarConsulta = params.habilita;
+      this.rotaAnterior = params.rota;
     });
     this.carregarComboBox();
     this.formulario = this.formBuilder.group({
@@ -75,7 +78,6 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   editar(funcionario: Funcionario) {
-    console.log(funcionario);
     this.router.navigate([ '/cadfuncionario' ,   funcionario.idfuncionario ]);
   }
 
@@ -170,6 +172,10 @@ export class ConsfuncionarioComponent implements OnInit {
   }
 
   selecionarFuncionario(funcionarioConsulta: Funcionario) {
-    this.router.navigate([ '/cadasocontrole' ,   funcionarioConsulta.idfuncionario ]);
+    if ( this.rotaAnterior === 'asoagenda') {
+      this.router.navigate([ '/cadasoagenda' ,   funcionarioConsulta.idfuncionario, 'consfuncionario' ]);
+    } else if ( this.rotaAnterior === 'asocontrole') {
+      this.router.navigate([ '/cadasocontrole' ,   funcionarioConsulta.idfuncionario ]);
+    }
   }
 }

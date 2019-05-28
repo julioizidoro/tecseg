@@ -8,6 +8,7 @@ import { AsotipoService } from 'src/app/asos/asotipo.service';
 import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { LojaService } from 'src/app/loja/loja.service';
 import { Loja } from 'src/app/loja/model/loja';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class ConsasoagendaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private funcaoService: FuncaoService,
+    private router: Router,
     private asotipoService: AsotipoService,
     private lojaService: LojaService,
     private asoagendaService: AsoagendaService,
@@ -118,6 +120,14 @@ pesquisarAll( idLoja: number, nomePesquisa: string, situacao: string) {
       this.asoAgendas = resposta as any;
     }
   );
+}
+
+novo() {
+  this.router.navigate([ '/cadasoagenda', 'asoagenda']);
+}
+
+editar(asoAgenda: Asoagenda) {
+  this.router.navigate([ '/cadasoagenda' ,   asoAgenda.idasoagenda, 'asoagenda' ]);
 }
 
 }

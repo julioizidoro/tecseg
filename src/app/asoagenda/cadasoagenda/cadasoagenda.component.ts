@@ -26,17 +26,19 @@ export class CadasoagendaComponent implements OnInit {
   formulario: FormGroup;
   tipos: Asotipo[];
   tipoSelecionado: Asotipo;
-  asoControles: Asocontrole;
   funcoes: Funcao[];
+  asoControle: Asocontrole;
   funcaoSelecionada: Funcao;
   funcionarioSelecionado: Funcionario;
   asoAgenda: Asoagenda;
   clinicaSelecionada: Clinica;
   clinicas: Clinica[];
   enabledFuncao = false;
-  public maskHora = [/[0-9]/, /[0-9]/, ':', /[0-9]/, /[0-9]/];
+  public maskHora = [/[0-9]/, /[0-9]/, ':', /[0-9]/, /[0-9]/,  ':', /[0-9]/, /[0-9]/];
   rotaConsulta: string;
   inscricao: Subscription;
+  habilitarConsultaFuncionario = true;
+  rota: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -74,6 +76,8 @@ export class CadasoagendaComponent implements OnInit {
     let id;
     this.inscricao = this.activeRrouter.params.subscribe(params => {
       id = params.id;
+      this.rota = params.rota;
+      if (this.rota === 'consfuncionario') {
       if (id != null) {
         this.funcionarioService.getFuncionarioId(id).subscribe(
           resposta => {
@@ -94,6 +98,58 @@ export class CadasoagendaComponent implements OnInit {
           }
         );
       }
+    } else if ( this.rota === 'asoagenda' ) {
+      if (id != null) {
+        this.habilitarConsultaFuncionario = false;
+        this.asoagendaService.getId(id).subscribe(
+          resposta => {
+            this.asoAgenda = resposta as Asoagenda;
+            this.funcionarioSelecionado = this.asoAgenda.funcionario;
+            this.funcaoSelecionada = this.asoAgenda.funcao;
+            this.clinicaSelecionada = this.asoAgenda.clinica;
+            this.tipoSelecionado = this.asoAgenda.asotipo;
+            console.log(this.asoAgenda);
+            this.formulario = this.formBuilder.group({
+              idasoagenda: [this.asoAgenda.idasoagenda],
+              dataexame: [this.asoAgenda.dataexame],
+              hora: [this.asoAgenda.horaexame],
+              situacao: [this.asoAgenda.situacao],
+              funcionario: [this.funcionarioSelecionado],
+              asotipo: [this.tipoSelecionado],
+              funcao: [this.funcaoSelecionada],
+              clinica: [this.clinicaSelecionada],
+            });
+          },
+          err => {
+            console.log(err.error.erros.join(' '));
+          }
+        );
+      }
+    } else if (this.rota === 'asocontrole') {
+      if (id != null) {
+        this.habilitarConsultaFuncionario = false;
+        this.asocontroleService.getId(id).subscribe(
+          resposta => {
+            this.asoControle = resposta as Asocontrole;
+            this.funcionarioSelecionado = this.asoControle.funcionario;
+            this.funcaoSelecionada = this.asoControle.funcionario.funcao;
+            this.formulario = this.formBuilder.group({
+              idasoagenda: [null],
+              dataexame: [null],
+              hora: [null],
+              situacao: [null],
+              funcionario: [this.funcionarioSelecionado],
+              asotipo: [null],
+              funcao: [this.funcaoSelecionada],
+              clinica: [null],
+            });
+          },
+          err => {
+            console.log(err.error.erros.join(' '));
+          }
+        );
+      }
+    }
     });
   }
 
@@ -142,7 +198,7 @@ export class CadasoagendaComponent implements OnInit {
   }
 
   consultaFuncionario() {
-    this.router.navigate(['/consfuncionario'] ,  { queryParams: {habilitarConsulta: true, rota: 'asoagenda' }});
+    this.router.navigate([ '/consfuncionario' ,   'true', 'asoagenda' ]);
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -151,11 +207,28 @@ export class CadasoagendaComponent implements OnInit {
   }
 
   salvar() {
-
+    this.asoAgenda = this.formulario.value;
+    this.asoagendaService.salvar(this.asoAgenda).subscribe(resposta => {
+      this.asoAgenda = resposta as Asoagenda;
+      if (this.asoAgenda.situacao === 'agendado') {
+          if (this.asoControle !== null) {
+            this.asoControle.agendado = true;
+            this.asocontroleService.atualizar(this.asoControle).subscribe(resposta2 => {
+              this.asoControle = resposta2 as any;
+            });
+          }
+      }
+    });
+    this.cancelar();
   }
 
   cancelar() {
-
+    this.formulario.reset();
+    if (this.rota === 'asoagenda') {
+      this.router.navigate([ '/consasoagenda']);
+    } else if ( this.rota === 'asocontrole') {
+      this.router.navigate([ '/consasocontrole']);
+    }
   }
 
 

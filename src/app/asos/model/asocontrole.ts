@@ -12,4 +12,5 @@ export class Asocontrole {
     asotipo: Asotipo;
     funcionario: Funcionario;
     situacao: string;
+    agendado: boolean;
 }

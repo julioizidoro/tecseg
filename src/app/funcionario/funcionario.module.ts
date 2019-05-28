@@ -1,3 +1,4 @@
+import { CampoControlErroComponent } from './../campo-control-erro/campo-control-erro.component';
 import { FuncaoService } from 'src/app/funcao/funcao.service';
 import { FuncaoModule } from './../funcao/funcao.module';
 import { FuncionarioService } from './funcionario.service';
@@ -14,7 +15,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
-  declarations: [ConsfuncionarioComponent, CadfuncionarioComponent],
+  declarations: [ConsfuncionarioComponent, CadfuncionarioComponent, CampoControlErroComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

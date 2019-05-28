@@ -123,20 +123,17 @@ export class CadasocontroleComponent implements OnInit {
       console.log(this.asoControles);
       if (this.asoControles.funcionario.funcao.idfuncao !== idfuncao) {
         this.asoControles.funcionario.funcao = this.funcaoSelecionada;
-        this.funcionarioService.salvar(this.asoControles.funcionario).subscribe(resposta1 => {
+        this.funcionarioService.atualizar(this.asoControles.funcionario).subscribe(resposta1 => {
           this.asoControles.funcionario = resposta1 as any;
         });
       }
       this.asocontroleService.salvar(this.asoControles).subscribe(resposta2 => {
         this.asoControles = resposta2 as any;
-        console.log(this.asoControles);
-
         if ( this.lastAsoControles != null ) {
           this.lastAsoControles.funcionario = this.asoControles.funcionario;
           this.lastAsoControles.finalizado = true;
-          this.asocontroleService.salvar(this.lastAsoControles).subscribe( resposta => {
-            this.asoControles = resposta as any;
-            console.log(this.asoControles);
+          this.asocontroleService.atualizar(this.lastAsoControles).subscribe( resposta3 => {
+            this.asoControles = resposta3 as any;
           });
         }
       });

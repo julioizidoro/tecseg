@@ -17,6 +17,9 @@ import { ShareModule } from './share/share.module';
 import {NgxMaskModule} from 'ngx-mask';
 import { AsosModule } from './asos/asos.module';
 import { AngularValidateBrLibModule } from 'angular-validate-br';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -29,7 +32,7 @@ import { AngularValidateBrLibModule } from 'angular-validate-br';
     BrowserModule,
     FormsModule,
     FuncionarioModule,
-    AngularValidateBrLibModule,
+    NgbModule.forRoot(),
     AsosModule,
     UsuarioModule,
     ClinicaModule,

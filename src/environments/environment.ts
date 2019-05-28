@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
- // baseUrl: 'http://localhost:8080/',
- // baseApiUrl: 'http://localhost:8080/'
- baseUrl: 'https://systm.com.br/',
+  //baseUrl: 'http://localhost:8080/',
+  //baseApiUrl: 'http://localhost:8080/'
+  baseUrl: 'https://systm.com.br/',
   baseApiUrl: 'https://systm.com.br/tecseg-api/'
 };
 

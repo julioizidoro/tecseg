@@ -1,7 +1,8 @@
+import { Validacoes } from './../../campo-control-erro/validacoes';
 import { SetorService } from './../../setor/setor.service';
 import { Asocontrole } from './../../asos/model/asocontrole';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Funcionario } from '../model/funcionario';
 import { Funcao } from 'src/app/funcao/model/funcao';
 import { Loja } from 'src/app/loja/model/loja';
@@ -11,6 +12,8 @@ import { FuncionarioService } from '../funcionario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Setor } from 'src/app/setor/model/setor';
 import { ValidateBrService } from 'angular-validate-br';
+
+
 
 
 
@@ -47,24 +50,27 @@ export class CadfuncionarioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.setorSelecionado = new Setor();
+    this.setorSelecionado.idsetor = 1;
+    this.setorSelecionado.nome = 'Não cadastrado';
     this.carregarComboBox();
     this.funcaoSelecionada = new Funcao();
     this.funcaoSelecionada.cbo = '';
     this.formulario = this.formBuilder.group({
       idfuncionario: [null],
-      nome: [null],
-      dataadmissao: [null],
-      situacao: [1],
-      funcao: [null],
-      loja: [null],
-      cpf: [null],
+      nome: [null, Validators.required],
+      dataadmissao: [null, Validators.required],
+      situacao: ['Ativo', Validators.required],
+      funcao: [null, Validators.required],
+      loja: [null, Validators.required],
+      cpf: ['',   [ Validators.required, Validacoes.ValidaCpf]],
       rg: [null],
       uf: [null],
       datanascimento: [null],
       pis: [null],
       ctps: [null],
       serie: [null],
-      setor: [null],
+      setor: [this.setorSelecionado, Validators.required],
     });
     let id;
     this.activeRrouter.params.subscribe(params => {
@@ -77,37 +83,38 @@ export class CadfuncionarioComponent implements OnInit {
               this.funcaoSelecionada = new Funcao();
               this.formulario = this.formBuilder.group({
                 idfuncionario: [null],
-                nome: [null],
-                dataadmissao: [null],
-                situacao: [1],
-                funcao: [null],
-                loja: [null],
-                cpf: [null],
+                nome: [null, Validators.required],
+                dataadmissao: [null, Validators.required],
+                situacao: ['Ativo', Validators.required],
+                funcao: [null, Validators.required],
+                loja: [null, Validators.required],
+                cpf: ['',  [ Validators.required, Validacoes.ValidaCpf]],
                 rg: [null],
                 uf: [null],
                 datanascimento: [null],
                 pis: [null],
                 ctps: [null],
                 serie: [null],
-                setor: [null],
+                setor: [null, Validators.required],
               });
             } else {
               this.funcaoSelecionada = this.funcionario.funcao;
+              this.setorSelecionado = this.funcionario.setor;
               this.formulario = this.formBuilder.group({
                 idfuncionario: [this.funcionario.idfuncionario],
-                nome: [this.funcionario.nome],
-                dataadmissao: [this.funcionario.dataadmissao],
-                situacao: [this.funcionario.situacao],
-                funcao: [this.funcionario.funcao],
-                loja: [this.funcionario.loja],
-                cpf: [this.funcionario.cpf],
+                nome: [this.funcionario.nome, Validators.required],
+                dataadmissao: [this.funcionario.dataadmissao, Validators.required],
+                situacao: [this.funcionario.situacao, Validators.required],
+                funcao: [this.funcionario.funcao, Validators.required],
+                loja: [this.funcionario.loja, Validators.required],
+                cpf: [this.funcionario.cpf,   [ Validators.required, Validacoes.ValidaCpf]],
                 rg: [this.funcionario.rg],
                 uf: [this.funcionario.uf],
                 datanascimento: [this.funcionario.datanascimento],
                 pis: [this.funcionario.pis],
                 ctps: [this.funcionario.ctps],
                 serie: [this.funcionario.serie],
-                setor: [this.funcionario.setor]
+                setor: [this.funcionario.setor, Validators.required]
               });
             }
           },
@@ -167,9 +174,6 @@ export class CadfuncionarioComponent implements OnInit {
         this.funcionario = resposta as any;
       });
     }
-    this.funcionarioService.salvar(this.funcionario).subscribe(resposta => {
-      this.funcionario = resposta as any;
-    });
     console.log(this.funcionario);
     this.formulario.reset();
     this.router.navigate(['/consfuncionario']);
@@ -178,5 +182,27 @@ export class CadfuncionarioComponent implements OnInit {
   cancelar() {
     this.formulario.reset();
     this.router.navigate(['/consfuncionario']);
+  }
+
+  verificarValidTouched(campo) {
+    return (!this.formulario.get(campo).valid && this.formulario.get(campo).touched);
+  }
+
+  aplicaCssErro(campo) {
+    return {
+      'has-error' : this.verificarValidTouched(campo),
+      'has-feedback' : this.verificarValidTouched(campo)
+    };
+  }
+
+  consultarCPF() {
+    const cpf = this.formulario.get('cpf').value;
+    let funcionarioCPF: Funcionario;
+    this.funcionarioService.getFuncionarioCPF(cpf).subscribe(resposta => {
+      funcionarioCPF = resposta as Funcionario;
+      if (funcionarioCPF != null) {
+        alert('Cliente já cadastrado: ' + funcionarioCPF.nome);
+      }
+    });
   }
 }

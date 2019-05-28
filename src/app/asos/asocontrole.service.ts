@@ -17,6 +17,10 @@ export class AsocontroleService {
     return this.httpClient.post<any>(env.baseApiUrl + 'asocontrole/salvar', asoControle);
   }
 
+  atualizar(asoControle: Asocontrole): Observable<any> {
+    return this.httpClient.post<any>(env.baseApiUrl + 'asocontrole/salvar', asoControle);
+  }
+
   calcularVencimento(dataVencimento: Date, dias: number): Observable<any> {
     return this.httpClient.get<any>(env.baseApiUrl + 'asocontrole/calculardata/' + dataVencimento + '/' + dias);
   }

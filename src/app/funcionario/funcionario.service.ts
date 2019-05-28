@@ -21,11 +21,15 @@ export class FuncionarioService {
 
   atualizar(funcionario: Funcionario): Observable<any> {
     console.log(funcionario);
-    return this.httpClient.post<any>(env.baseApiUrl + 'funcionarios/atualizar', funcionario);
+    return this.httpClient.put<any>(env.baseApiUrl + 'funcionarios/atualizar', funcionario);
   }
 
   getFuncionarioId(id: number): Observable<Funcionario> {
     return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/id/' +  id);
+  }
+
+  getFuncionarioCPF(cpf: string): Observable<Funcionario> {
+    return this.httpClient.get<Funcionario>(env.baseApiUrl + 'funcionarios/cpf/' +  cpf);
   }
 
   getFuncionarioFuncao(id: number, nome: string, situacao: string): Observable<Funcionario> {

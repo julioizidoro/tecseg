@@ -22,7 +22,7 @@ export class ConsfuncionarioComponent implements OnInit {
   lojaSelecionada: Loja;
   funcoes: Funcao[];
   funcaoSelecionada: Funcao;
-  habilitarConsulta: false;
+  habilitarConsulta: boolean;
   isFirstOpen = true;
   oneAtATime = true;
   bsInlineValue = new Date();
@@ -51,6 +51,8 @@ export class ConsfuncionarioComponent implements OnInit {
       this.habilitarConsulta = params.habilita;
       this.rotaAnterior = params.rota;
     });
+    this.habilitarConsulta = true;
+    this.rotaAnterior = 'asocontrole';
     this.carregarComboBox();
     this.formulario = this.formBuilder.group({
       nome: [null],

@@ -18,6 +18,7 @@ import {NgxMaskModule} from 'ngx-mask';
 import { AsosModule } from './asos/asos.module';
 import { AngularValidateBrLibModule } from 'angular-validate-br';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 
 
 
@@ -38,6 +39,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ClinicaModule,
     TreinamentoModule,
     AsoagendaModule,
+    PdfJsViewerModule,
     AppRoutingModule,
   ],
   providers: [

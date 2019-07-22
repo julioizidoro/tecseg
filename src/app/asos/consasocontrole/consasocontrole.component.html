@@ -52,6 +52,10 @@
                                     <i class="fa fa-ban" aria-hidden="true" ></i>
                                     Limpar
                               </button>
+                              <button type="Imprimir" style="margin-left:1%;" class="btn btn-success" (click)="gerarPDF()" title="Imprimir">
+                                <i class="fa fa-ban" aria-hidden="true" ></i>
+                                Limpar
+                          </button>
                         </div>
                     </div>
                 </accordion-group>
@@ -81,7 +85,7 @@
             <tbody>
                 <tr *ngFor="let aso of asoControles" 
                   class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                  <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100"><a [routerLink]="['/listaaso', aso.funcionario.idfuncionario ]" ><img src="{{aso.situacao}}" width='40%'></a></td>
+                  <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100"><a [routerLink]="['/cadasoagenda', aso.idasocontrole, 'asocontrole' ]" ><img src="{{aso.situacao}}" width='40%'></a></td>
                   <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100"><a [routerLink]="['/listaaso', aso.funcionario.idfuncionario ]" >{{ aso.funcionario.nome}}</a></td>
                   <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{ aso.funcionario.funcao.nome}}</td>
                   <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{ aso.funcionario.loja.nome }}</td>

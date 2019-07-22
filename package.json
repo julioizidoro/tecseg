@@ -27,6 +27,7 @@
     "exceljs": "^1.7.0",
     "jspdf": "^1.5.3",
     "moment": "^2.24.0",
+    "ng2-pdfjs-viewer": "^3.2.5",
     "ngx-accordion": "0.0.17",
     "ngx-bootstrap": "^3.3.0",
     "ngx-mask": "^7.3.6",

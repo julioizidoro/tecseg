@@ -1,5 +1,8 @@
+import { AuthService } from './usuario/login/auth.service';
+import { Usuario } from './usuario/model/usuario';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Acesso } from './usuario/model/acesso';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'TecSeg';
-  mostrarMenu: boolean = true;
-  mosrtrarLogin: boolean = true;
+  usuario = new Usuario();
 
 
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {
+      console.log('teste');
+    }
 
-  constructor( private router: Router ) {
-
-
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnInit() {
+    this.usuario = this.authService.usuario;
+    console.log(this.usuario.acesso.aso);
+   // if ( this.usuario.idusuario == null ) {
+    //    this.router.navigate([ '/login' ]);
+   // } else {
+    // console.log(this.usuario.acesso.cadastro);
+   // }
+  //  this.acesso = this.authService.usuario.acesso;
   }
 
-   ngOnInit(){
-
-   }
-
+ 
 }
 
 

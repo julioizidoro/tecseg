@@ -1,3 +1,4 @@
+import { AuthService } from './usuario/login/auth.service';
 import { ClinicaModule } from './clinica/clinica.module';
 import { AsoagendaModule } from './asoagenda/asoagenda.module';
 import { CadasoagendaComponent } from './asoagenda/cadasoagenda/cadasoagenda.component';
@@ -19,6 +20,8 @@ import { AsosModule } from './asos/asos.module';
 import { AngularValidateBrLibModule } from 'angular-validate-br';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 
@@ -36,6 +39,7 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     NgbModule.forRoot(),
     AsosModule,
     UsuarioModule,
+    DashboardModule,
     ClinicaModule,
     TreinamentoModule,
     AsoagendaModule,
@@ -43,7 +47,7 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     AppRoutingModule,
   ],
   providers: [
-
+      AuthService
   ],
   bootstrap: [AppComponent]
 })

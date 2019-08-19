@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConsasoagendaComponent } from './asoagenda/consasoagenda/consasoagenda.component';
 import { CadasocontroleComponent } from './asos/cadasocontrole/cadasocontrole.component';
 import { CadfuncionarioComponent } from './funcionario/cadfuncionario/cadfuncionario.component';
@@ -26,6 +27,7 @@ const APP_ROUTER: Routes = [
   { path: 'cadasoagenda/:id/:rota', component: CadasoagendaComponent },
   { path: 'cadasoagenda/:rota', component: CadasoagendaComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'dashBoard', component: DashboardComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

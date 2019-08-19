@@ -1,3 +1,6 @@
+import { Acesso } from './acesso';
+
+
 export class Usuario {
     idusuario: number;
     nome: string;
@@ -8,4 +11,5 @@ export class Usuario {
     email: string;
     fonecelular: string;
     situacao: boolean;
+    acesso: Acesso;
 }

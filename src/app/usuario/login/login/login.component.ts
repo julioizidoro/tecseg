@@ -1,5 +1,9 @@
+import { AuthService } from './../auth.service';
+import { Usuario } from './../../model/usuario';
+import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -9,13 +13,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private router: Router) { }
+  formulario: FormGroup;
+
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authSErvice: AuthService
+    ) { }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      login: [null],
+      senha: [null],
+    });
   }
 
   logar() {
-    this.router.navigate([ '' ]);
+    this.authSErvice.fazerLogin(this.formulario.get('login').value, this.formulario.get('senha').value);
   }
 
+  sair() {
+
+  }
 }

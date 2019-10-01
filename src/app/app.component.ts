@@ -13,6 +13,8 @@ export class AppComponent {
   title = 'TecSeg';
   usuario = new Usuario();
 
+  acesso = new Acesso();
+
 
   constructor(
     private authService: AuthService,
@@ -25,15 +27,15 @@ export class AppComponent {
     ngOnInit() {
     this.usuario = this.authService.usuario;
     console.log(this.usuario.acesso.aso);
-   // if ( this.usuario.idusuario == null ) {
-    //    this.router.navigate([ '/login' ]);
-   // } else {
-    // console.log(this.usuario.acesso.cadastro);
-   // }
-  //  this.acesso = this.authService.usuario.acesso;
+    if ( this.usuario.idusuario == null ) {
+        this.router.navigate([ '/login' ]);
+    } else {
+     console.log(this.usuario.acesso.cadastro);
+    }
+    this.acesso = this.authService.usuario.acesso;
   }
 
- 
+
 }
 
 
